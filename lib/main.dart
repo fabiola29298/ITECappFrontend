@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:itec_app/pages/home_page.dart';
-import 'package:itec_app/routes/routes.dart';
+import 'package:itec_app/src/pages/home_page.dart';
+import 'package:itec_app/src/routes/routes.dart';
 
 void main() => runApp(MyApp());
 

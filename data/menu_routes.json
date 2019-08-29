@@ -1,0 +1,51 @@
+{
+    "nombreApp": "Rutas",
+    "rutas": [{
+            "ruta": "login",
+            "icon": "avatar",
+            "texto": "Log In"
+        },
+        {
+            "ruta": "signin",
+            "icon": "avatar",
+            "texto": "Sign In"
+        },
+        {
+            "ruta": "programaUser",
+            "icon": "avatar",
+            "texto": "Programa de actividades"
+        },
+        {
+            "ruta": "itinerarioUser",
+            "icon": "avatar",
+            "texto": "Mi Itinerario Personalizado"
+        },
+        {
+            "ruta": "expositoresUser",
+            "icon": "avatar",
+            "texto": "Expositores"
+        },
+        {
+            "ruta": "auspiciadorUser",
+            "icon": "avatar",
+            "texto": "Auspiciadores"
+        },
+        {
+            "ruta": "mapaUser",
+            "icon": "avatar",
+            "texto": "Mapa del Campus"
+        },
+        {
+            "ruta": "notificacionesUser",
+            "icon": "avatar",
+            "texto": "Notificaciones"
+        },
+
+        {
+            "ruta": "asistenciaUser",
+            "icon": "avatar",
+            "texto": "Asistencia"
+        }
+
+    ]
+}
