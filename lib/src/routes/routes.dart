@@ -18,7 +18,7 @@ Map<String, WidgetBuilder> getAplicationRouter(){
 
   return  <String, WidgetBuilder>{
          '/'      : (BuildContext context)=> HomePage(),
-         'login'            : (BuildContext context)=> LogInPage(),
+         'login'            : (BuildContext context)=> LoginPage(),
          'signin'           : (BuildContext context)=> SignInPage(),
          'asistenciaUser'        : (BuildContext context)=> AsistenciaPage(),
          'expositoresUser'       : (BuildContext context)=> ExpositoresPage(),
