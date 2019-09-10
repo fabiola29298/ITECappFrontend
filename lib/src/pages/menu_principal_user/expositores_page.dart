@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:itec_app/src/widgets/menu_widget.dart';
 class ExpositoresPage extends StatelessWidget {
    
   @override
@@ -7,6 +8,7 @@ class ExpositoresPage extends StatelessWidget {
       appBar:AppBar(
         title: Text('Expositores Page'),
       ) ,
+      drawer: MenuWidget(),
       body: 
         Text('data')
       );

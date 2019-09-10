@@ -18,7 +18,7 @@ class ActivitiesProvider{
     final resp = await http.get(url);
     final decodedData = json.decode(resp.body);
     final activitiesData = new Activities.fromJsonList(decodedData['activity']);
-    final dt = activitiesData.items;
+    //final dt = activitiesData.items;
     print('decode:{$decodedData}');
     return activitiesData.items;
   }

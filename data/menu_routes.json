@@ -3,12 +3,12 @@
     "rutas": [{
             "ruta": "login",
             "icon": "avatar",
-            "texto": "Log In"
+            "texto": "Iniciar sesión"
         },
         {
             "ruta": "signin",
             "icon": "avatar",
-            "texto": "Sign In"
+            "texto": "Registrarse"
         },
         {
             "ruta": "programaUser",

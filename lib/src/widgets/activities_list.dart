@@ -6,43 +6,82 @@ class ActivitiesList extends StatelessWidget {
 
   ActivitiesList({@required this.activities});
 
-  //escuchar todos los cambios del controller
-    final _pageController = new PageController(
-      initialPage: 1,
-      viewportFraction: 0.3
-    );
-
   @override
   Widget build(BuildContext context) {
     //dimenciones del dispositivo
     final _screenSize = MediaQuery.of(context).size;
 
-    return Container(
-       //height: _screenSize.height *0.5,
-       child: Column ( 
-         children: _activitiesCard(),
-
-          
-        ),
-    );
+    return  Column(
+           
+           children: _activitiesCard(),
+         ) ;
   }
 
   List<Widget> _activitiesCard (){
     return activities.map((activity){
       return Container(
         margin: EdgeInsets.all( 10.0),
-         
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
-          child: Column(
+        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black38,
+              blurRadius: 10.0, // has the effect of softening the shadow
+              spreadRadius: 5.0, // has the effect of extending the shadow
+              offset: Offset(
+                10.0, // horizontal, move right 10
+                10.0, // vertical, move down 10
+              ),
+            )
+          ]),
+             
+        child:  Column(
             
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[ 
                 ListTile(
-                leading: Icon(Icons.map, size: 50.0,),
-                trailing: Icon ( Icons.keyboard_arrow_right, color: Colors.blue ),
-                title: Text(activity.name),
-                subtitle: Text(activity.description), 
+                 
+               // contentPadding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+                leading: 
+                Icon ( Icons.calendar_today, color: Colors.blue ),
+                //new Image.asset(  'assets/img/menu-img.jpg'  , fit: BoxFit.cover,  width: 120.0,
+                //  ),
+                trailing: Column(
+                  children: <Widget>[
+                    Icon ( Icons.add, color: Colors.blue ),
+                    Text(
+                      'Agregar',
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15.0),
+                    ),
+                  ],
+                ),
+                title: Text(
+                  activity.name,
+                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
+                ),
+                subtitle: new Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  
+                  children: <Widget>[
+                    SizedBox(height: 10.0),
+                    Text(
+                      'Fecha: 28/09/2019    \n Hora: 14:00 - 16:00  ',
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15.0),
+                    ),
+                    SizedBox(height: 10.0),
+                    Text(
+                      'Tipo: ${activity.type}',
+                      style: new TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, )
+                    ),
+                    Text(
+                      'Expositor: Pesona Prueba',
+                      style: new TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, )
+                    ),
+                    Text(
+                      'Lugar: Aula ${activity.classroom} Bloque ${activity.blockCampus} ',
+                      style: new TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, )
+                    ), 
+                     ]), 
                 onTap: () { /* react to the tile being tapped */ },dense: true,
 
               ),
@@ -50,8 +89,13 @@ class ActivitiesList extends StatelessWidget {
                
             ],
           ),
-        ),
+         
       );
     }).toList();
   }
+
+  
+  
+
+  
 }
