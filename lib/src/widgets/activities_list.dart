@@ -9,7 +9,7 @@ class ActivitiesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //dimenciones del dispositivo
-    final _screenSize = MediaQuery.of(context).size;
+    //final _screenSize = MediaQuery.of(context).size;
 
     return  Column(
            

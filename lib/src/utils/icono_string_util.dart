@@ -7,7 +7,11 @@ final _icons = <String, IconData>{
   'avatar': Icons.list,
   'input': Icons.input,
   'tune': Icons.tune,
-  'list': Icons.list
+  'list': Icons.list,
+  'calendar_today': Icons.calendar_today,
+  'schedule': Icons.schedule,
+  'people': Icons.people,
+  'announcement': Icons.announcement,
 
 };
 

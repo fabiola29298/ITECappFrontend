@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:itec_app/src/bloc/provider.dart';
-import 'package:itec_app/src/pages/home_page.dart';
+import 'package:itec_app/src/bloc/provider.dart'; 
 import 'package:itec_app/src/pages/pantalla_principal/scroll_page.dart';
 import 'package:itec_app/src/routes/routes.dart';
 

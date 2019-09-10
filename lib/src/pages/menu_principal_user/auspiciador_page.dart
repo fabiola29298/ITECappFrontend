@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
-import 'dart:math';
-import 'dart:ui';
-import 'package:itec_app/src/utils/icono_string_util.dart'; 
-import 'package:itec_app/src/widgets/menu_widget.dart';
+import 'package:flutter/material.dart'; 
+import 'dart:ui'; 
 class AuspiciadorPage extends StatelessWidget {
    
   @override
