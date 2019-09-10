@@ -1,6 +1,11 @@
 {
     "nombreApp": "Rutas",
     "rutas": [{
+            "ruta": "scroll",
+            "icon": "avatar",
+            "texto": "Scroll"
+        },
+        {
             "ruta": "login",
             "icon": "avatar",
             "texto": "Iniciar sesión"
@@ -12,22 +17,22 @@
         },
         {
             "ruta": "programaUser",
-            "icon": "avatar",
+            "icon": "calendar_today",
             "texto": "Programa de actividades"
         },
         {
             "ruta": "itinerarioUser",
-            "icon": "avatar",
+            "icon": "schedule",
             "texto": "Mi Itinerario Personalizado"
         },
         {
             "ruta": "expositoresUser",
-            "icon": "avatar",
+            "icon": "people",
             "texto": "Expositores"
         },
         {
             "ruta": "auspiciadorUser",
-            "icon": "avatar",
+            "icon": "announcement",
             "texto": "Auspiciadores"
         },
         {

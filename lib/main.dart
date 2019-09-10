@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:itec_app/src/bloc/provider.dart';
 import 'package:itec_app/src/pages/home_page.dart';
+import 'package:itec_app/src/pages/pantalla_principal/scroll_page.dart';
 import 'package:itec_app/src/routes/routes.dart';
 
 void main() => runApp(MyApp());
@@ -18,10 +19,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'itec APP',
         debugShowCheckedModeBanner: false,
-        initialRoute: '/',
+        initialRoute: 'scroll',
          routes: getAplicationRouter(),
          onGenerateRoute: (setting){
-           return MaterialPageRoute(builder: (context)=>HomePage());
+           return MaterialPageRoute(builder: (context)=>ScrollPage());
          },
          theme: ThemeData(
           //brightness: Brightness.dark,
