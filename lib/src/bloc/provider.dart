@@ -4,7 +4,7 @@ export 'package:itec_app/src/bloc/login_bloc.dart';
 
 
 class Provider extends InheritedWidget {
-
+  final loginBloc      = new LoginBloc();
   static Provider _instancia;
 
   factory Provider({ Key key, Widget child }) {
@@ -20,8 +20,7 @@ class Provider extends InheritedWidget {
   Provider._internal({ Key key, Widget child })
     : super(key: key, child: child );
 
-
-  final loginBloc = LoginBloc();
+ 
 
   // Provider({ Key key, Widget child })
   //   : super(key: key, child: child );

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:itec_app/src/bloc/provider.dart';
 
 class LoginPage extends StatelessWidget {
+
+  //final personProvider = new PersonProvider
   @override
   Widget build(BuildContext context) {
     return Scaffold(
