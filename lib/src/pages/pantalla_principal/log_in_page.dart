@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:itec_app/src/bloc/provider.dart';
+import 'package:itec_app/src/providers/person_provider.dart';
+import 'package:itec_app/src/utils/utils.dart';
 
 class LoginPage extends StatelessWidget {
 
-  //final personProvider = new PersonProvider
+  final personProvider = new PersonProvider();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +36,8 @@ class LoginPage extends StatelessWidget {
 
           Container(
             width: size.width * 0.85,
-            margin: EdgeInsets.symmetric(vertical: 30.0),
-            padding: EdgeInsets.symmetric( vertical: 50.0 ),
+            margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
+            padding: EdgeInsets.symmetric( vertical: 20.0 ),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(5.0),
@@ -49,19 +52,23 @@ class LoginPage extends StatelessWidget {
             ),
             child: Column(
               children: <Widget>[
-                Text('Inciar Sesion', style: TextStyle(fontSize: 20.0)),
-                SizedBox( height: 60.0 ),
+                Text('Iniciar Sesion', style: TextStyle(fontSize: 20.0)),
+                SizedBox( height: 20.0 ),
                 _crearEmail( bloc ),
-                SizedBox( height: 30.0 ),
+                SizedBox( height: 20.0 ),
                 _crearPassword( bloc ),
-                SizedBox( height: 30.0 ),
+                SizedBox( height: 20.0 ),
                 _crearBoton( bloc )
               ],
             ),
+            
           ),
-
-          Text('¿Olvido la contraseña?'),
+          FlatButton(
+            child: Text('Crear una nueva cuenta'),
+            onPressed: ()=> Navigator.pushReplacementNamed(context, 'signin'),
+          ), 
           SizedBox( height: 100.0 )
+          
         ],
       ),
     );
@@ -84,7 +91,7 @@ class LoginPage extends StatelessWidget {
             icon: Icon( Icons.alternate_email, color: Colors.deepPurple ),
             hintText: 'ejemplo@correo.com',
             labelText: 'Correo electrónico',
-            counterText: snapshot.data,
+            //counterText: snapshot.data,
             errorText: snapshot.error
           ),
           onChanged: bloc.changeEmail,
@@ -113,7 +120,7 @@ class LoginPage extends StatelessWidget {
             decoration: InputDecoration(
               icon: Icon( Icons.lock_outline, color: Colors.deepPurple ),
               labelText: 'Contraseña',
-              counterText: snapshot.data,
+              //counterText: snapshot.data,
               errorText: snapshot.error
             ),
             onChanged: bloc.changePassword,
@@ -154,15 +161,16 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _login(LoginBloc bloc, BuildContext context) {
+   _login(LoginBloc bloc, BuildContext context) async {
+      
+    Map info = await personProvider.login(bloc.email, bloc.password );
 
-    print('================');
-    print('Email: ${ bloc.email }');
-    print('Password: ${ bloc.password }');
-    print('================');
-
-    Navigator.pushReplacementNamed(context, '/');
-
+    if ( info['ok'] ) {
+       Navigator.pushReplacementNamed(context, '/');
+    } else {
+      mostrarAlerta( context, info['mensaje'] );
+    }
+    
   }
 
 

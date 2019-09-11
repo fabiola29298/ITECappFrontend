@@ -1,7 +1,6 @@
 import 'package:http/http.dart' as http;
 
 import 'dart:convert';
-
 import 'package:itec_app/src/models/activity_model.dart';
 
 class ActivitiesProvider{

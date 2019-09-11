@@ -1,157 +1,216 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 
-//import 'package:itec_app/src/utils/utils.dart' as utils;
-class SignInPage extends StatefulWidget {
-  @override
-  _SignInPageState createState() => _SignInPageState();
-}
+import 'package:itec_app/src/bloc/provider.dart';
+import 'package:itec_app/src/providers/person_provider.dart';
+import 'package:itec_app/src/utils/utils.dart'; 
 
-class _SignInPageState extends State<SignInPage> {
-   final formKey     = GlobalKey<FormState>();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-
+class SignInPage extends StatelessWidget {
+    final personProvider = new PersonProvider();
   @override
   Widget build(BuildContext context) {
-        return Scaffold(
-          key: scaffoldKey,
-          appBar: AppBar(
-            title: Text('Registrarse'),
-             
-          ),
-          body:    SingleChildScrollView(
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          _crearFondo( context ),
+          _registerForm( context ),
+        ],
+      )
+    );
+  }
+
+  Widget _registerForm(BuildContext context) {
+
+    final bloc = Provider.of(context);
+    final size = MediaQuery.of(context).size;
+
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+
+          SafeArea(
             child: Container(
-              padding: EdgeInsets.all(15.0),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  children: <Widget>[ 
-                    _crearNombre(),
-                    _crearApellido(),
-                    _crearCorreo(),
-                    _crearGenero(),
-                    _crearCarreraU(),
-                    _crearTipoInscripcion(),
-                    _crearPassword(), 
-                    SizedBox(height: 20.0,) ,
-                    _crearBoton()
-                  ],
-                ),
-              ),
+              height: 180.0,
             ),
           ),
-    );
-  }
 
-  Widget _crearNombre() {
-
-    return TextFormField( 
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-        labelText: 'Nombre*'
-      ), 
-      validator: (value) {
-        if ( value.length < 3 ) {
-          return 'Ingrese solo sus nombres';
-        } else {
-          return null;
-        }
-      },
-      
-    );
-
-  }
-
-  Widget _crearApellido(){
-    return TextFormField( 
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-        labelText: 'Apellido*'
-      ),  
-    );
-
-  }
-  Widget _crearCorreo(){
-    return TextFormField( 
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-        labelText: 'Correo electronico*'
-      ),  
-    );
-  }
-  Widget _crearGenero(){
-    return TextFormField( 
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-        labelText: 'Genero*'
-      ),  
-    );
-  }
-  Widget _crearCarreraU(){
-    return TextFormField( 
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-        labelText: 'Carrera universitaria (opcional)'
-      ),  
-    );
-  }
-  Widget _crearTipoInscripcion(){
-    return TextFormField( 
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-        labelText: 'Tipo de inscripcion*'
-      ),  
-    );
-  }
-  Widget _crearPassword(){
-    return TextFormField( 
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-        labelText: 'Contraseña'
-      ),  
-    );
-   }
-  /*
-  Widget _crearPrecio() {
-    return TextFormField(
-     // initialValue: producto.valor.toString(),
-      keyboardType: TextInputType.numberWithOptions(decimal: true),
-      decoration: InputDecoration(
-        labelText: 'Precio'
+          Container(
+            width: size.width * 0.85,
+            margin: EdgeInsets.symmetric(vertical: 30.0),
+            padding: EdgeInsets.symmetric( vertical: 50.0 ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(5.0),
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 3.0,
+                  offset: Offset(0.0, 5.0),
+                  spreadRadius: 3.0
+                )
+              ]
+            ),
+            child: Column(
+              children: <Widget>[
+                Text('Registrarse', style: TextStyle(fontSize: 20.0)),
+                SizedBox( height: 12.0 ),
+                _crearEmail( bloc ),
+                SizedBox( height: 12.0 ),
+                _crearPassword( bloc ),
+                SizedBox( height: 12.0 ),
+                _crearBoton( bloc )
+              ],
+            ),
+            
+          ),
+          FlatButton(
+            child: Text('¿Ya tienes cuenta? Login'),
+            onPressed: ()=> Navigator.pushReplacementNamed(context, 'login'),
+          ), 
+          SizedBox( height: 100.0 )
+          
+        ],
       ),
-     /* onSaved: (value) => producto.valor = double.parse(value),
-     */
-       validator: (value) {
-
-        if ( utils.isNumeric(value)  ) {
-          return null;
-        } else {
-          return 'Sólo números';
-        }
-
-      },
-      
     );
+
+
   }
-  */
-  Widget _crearBoton() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0), 
-      child: RaisedButton.icon(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0)
+
+  Widget _crearEmail(LoginBloc bloc) {
+
+    return StreamBuilder(
+      stream: bloc.emailStream,
+      builder: (BuildContext context, AsyncSnapshot snapshot){
+        
+      return Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+
+        child: TextField(
+          keyboardType: TextInputType.emailAddress,
+          decoration: InputDecoration(
+            icon: Icon( Icons.alternate_email, color: Colors.deepPurple ),
+            hintText: 'ejemplo@correo.com',
+            labelText: 'Correo electrónico',
+            //counterText: snapshot.data,
+            errorText: snapshot.error
+          ),
+          onChanged: bloc.changeEmail,
         ),
-        textColor: Colors.white,
-        label: Text('Guardar'),
-        icon: Icon( Icons.save ),
-        onPressed: _submit,
-      ),
+
+      );
+
+
+      },
+    );
+
+
+  }
+  
+
+  Widget _crearPassword(LoginBloc bloc) {
+
+    return StreamBuilder(
+      stream: bloc.passwordStream,
+      builder: (BuildContext context, AsyncSnapshot snapshot){
+        
+        return Container(
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
+
+          child: TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              icon: Icon( Icons.lock_outline, color: Colors.deepPurple ),
+              labelText: 'Contraseña',
+              //counterText: snapshot.data,
+              errorText: snapshot.error
+            ),
+            onChanged: bloc.changePassword,
+          ),
+
+        );
+
+      },
+    );
+
+
+  }
+
+  Widget _crearBoton( LoginBloc bloc) {
+
+    // formValidStream
+    // snapshot.hasData
+    //  true ? algo si true : algo si false
+
+    return StreamBuilder(
+      stream: bloc.formValidStream,
+      builder: (BuildContext context, AsyncSnapshot snapshot){
+        
+        return RaisedButton(
+          child: Container(
+            padding: EdgeInsets.symmetric( horizontal: 80.0, vertical: 15.0),
+            child: Text('Ingresar'),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0)
+          ),
+          elevation: 0.0,
+          color: Colors.deepPurple,
+          textColor: Colors.white,
+          onPressed: snapshot.hasData ? ()=> _register(bloc, context) : null
+        );
+      },
     );
   }
 
-    void _submit() async {
-      if ( !formKey.currentState.validate() ) return;
-      formKey.currentState.save();
-      print('Todo Ok@');
-     
+   _register(LoginBloc bloc, BuildContext context) async {
+      
+    Map info = await personProvider.nuevoUsuario(bloc.email, bloc.password );
+
+    if ( info['ok'] ) {
+       Navigator.pushReplacementNamed(context, '/');
+    } else {
+      mostrarAlerta( context, info['mensaje'] );
+    }
+    
   }
+
+
+  Widget _crearFondo(BuildContext context) {
+
+    final size = MediaQuery.of(context).size;
+
+    final fondoModaro = Container(
+      height: size.height * 0.4,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: <Color> [
+            Color.fromRGBO(63, 63, 156, 1.0),
+            Color.fromRGBO(90, 70, 178, 1.0)
+          ]
+        )
+      ),
+    );
+
+     
+
+
+    return Stack(
+      children: <Widget>[
+        fondoModaro, 
+        Container(
+          padding: EdgeInsets.only(top: 80.0),
+          child: Column(
+            children: <Widget>[
+              Icon( Icons.person_pin_circle, color: Colors.white, size: 100.0 ),
+              SizedBox( height: 10.0, width: double.infinity ),
+              Text('ITEC 2019', style: TextStyle( color: Colors.white, fontSize: 25.0 ))
+            ],
+          ),
+        )
+
+      ],
+    );
+
+  }
+
 }
