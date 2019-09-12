@@ -133,7 +133,6 @@ class LoginPage extends StatelessWidget {
 
 
   }
-
   Widget _crearBoton( LoginBloc bloc) {
 
     // formValidStream
@@ -166,7 +165,8 @@ class LoginPage extends StatelessWidget {
     Map info = await personProvider.login(bloc.email, bloc.password );
 
     if ( info['ok'] ) {
-       Navigator.pushReplacementNamed(context, '/');
+      Center(child: CircularProgressIndicator());
+       Navigator.pushReplacementNamed(context, 'menumaterial');
     } else {
       mostrarAlerta( context, info['mensaje'] );
     }

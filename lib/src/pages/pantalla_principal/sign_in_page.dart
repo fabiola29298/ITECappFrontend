@@ -4,8 +4,16 @@ import 'package:itec_app/src/bloc/provider.dart';
 import 'package:itec_app/src/providers/person_provider.dart';
 import 'package:itec_app/src/utils/utils.dart'; 
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
+   List<String> _generos = <String>['', 'red', 'green', 'blue', 'orange'];
+  String _color = '';
+  @override
+  _SignInPageState createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
     final personProvider = new PersonProvider();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +28,7 @@ class SignInPage extends StatelessWidget {
 
   Widget _registerForm(BuildContext context) {
 
-    final bloc = Provider.of(context);
+    final bloc = Provider.signinBloc(context);
     final size = MediaQuery.of(context).size;
 
     return SingleChildScrollView(
@@ -52,12 +60,26 @@ class SignInPage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Text('Registrarse', style: TextStyle(fontSize: 20.0)),
+                SizedBox( height: 10.0 ),
+                Text('Datos obligatorios (*) \nContraseña con minimo 6 caracteres', style: TextStyle(fontSize: 12.0)),
+                _crearName(bloc),
+                SizedBox( height: 12.0 ),
+                _crearLastname(bloc),
                 SizedBox( height: 12.0 ),
                 _crearEmail( bloc ),
                 SizedBox( height: 12.0 ),
                 _crearPassword( bloc ),
                 SizedBox( height: 12.0 ),
-                _crearBoton( bloc )
+              /*_generoEmail(bloc),
+                SizedBox( height: 12.0 ),
+                _creartipoInscripcion(bloc),
+                SizedBox( height: 12.0 ),
+                _crearCarrera(bloc),
+                SizedBox( height: 12.0 ),
+                */
+
+                _crearBoton( bloc ),
+                
               ],
             ),
             
@@ -75,7 +97,7 @@ class SignInPage extends StatelessWidget {
 
   }
 
-  Widget _crearEmail(LoginBloc bloc) {
+  Widget _crearEmail(SigninBloc bloc) {
 
     return StreamBuilder(
       stream: bloc.emailStream,
@@ -89,7 +111,7 @@ class SignInPage extends StatelessWidget {
           decoration: InputDecoration(
             icon: Icon( Icons.alternate_email, color: Colors.deepPurple ),
             hintText: 'ejemplo@correo.com',
-            labelText: 'Correo electrónico',
+            labelText: 'Correo electrónico*',
             //counterText: snapshot.data,
             errorText: snapshot.error
           ),
@@ -104,9 +126,68 @@ class SignInPage extends StatelessWidget {
 
 
   }
-  
 
-  Widget _crearPassword(LoginBloc bloc) {
+  Widget _crearName (SigninBloc bloc) {
+
+    return StreamBuilder(
+      stream: bloc.nameStream,
+      builder: (BuildContext context, AsyncSnapshot snapshot){
+        
+      return Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+
+        child: TextField(
+          keyboardType: TextInputType.emailAddress,
+          decoration: InputDecoration(
+            icon: Icon( Icons.person, color: Colors.deepPurple ),
+            hintText: 'nombre',
+            labelText: 'Nombres*',
+            //counterText: snapshot.data,
+            errorText: snapshot.error
+          ),
+          onChanged: bloc.changeName,
+        ),
+
+      );
+
+
+      },
+    );
+
+
+  }
+
+  Widget _crearLastname (SigninBloc bloc) {
+
+    return StreamBuilder(
+      stream: bloc.lastnameStream,
+      builder: (BuildContext context, AsyncSnapshot snapshot){
+        
+      return Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+
+        child: TextField(
+          keyboardType: TextInputType.emailAddress,
+          decoration: InputDecoration(
+            icon: Icon( Icons.person_outline, color: Colors.deepPurple ),
+            hintText: 'apellido',
+            labelText: 'Apellidos*',
+            //counterText: snapshot.data,
+            errorText: snapshot.error
+          ),
+          onChanged: bloc.changeLastname,
+        ),
+
+      );
+
+
+      },
+    );
+
+
+  }
+
+  Widget _crearPassword(SigninBloc bloc) {
 
     return StreamBuilder(
       stream: bloc.passwordStream,
@@ -119,7 +200,7 @@ class SignInPage extends StatelessWidget {
             obscureText: true,
             decoration: InputDecoration(
               icon: Icon( Icons.lock_outline, color: Colors.deepPurple ),
-              labelText: 'Contraseña',
+              labelText: 'Contraseña*',
               //counterText: snapshot.data,
               errorText: snapshot.error
             ),
@@ -134,14 +215,120 @@ class SignInPage extends StatelessWidget {
 
   }
 
-  Widget _crearBoton( LoginBloc bloc) {
+
+  
+  
+  Widget _generoEmail(SigninBloc bloc) {
+
+    return StreamBuilder(
+      stream: bloc.lastnameStream,
+      builder: (BuildContext context, AsyncSnapshot snapshot){
+        
+      return Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        
+
+        child:  DropdownButton<String>(
+        
+        //value: dropdownValue,
+        hint: new Text('Genero'),
+        icon: Icon(Icons.arrow_drop_down), iconSize: 30, isExpanded: true, elevation: 16,
+        underline: Container( height: 2, color: Colors.deepPurpleAccent, ),
+        onChanged: (String newValue) {
+          setState(() {
+            //dropdownValue = newValue;
+          });
+        },
+        items: <String>['Femenino', 'Masculino', 'Otro']
+          .map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(value: value, child: Text(value), );
+          })
+          .toList(),
+      ),
+      );
+      },
+    );
+
+
+  }
+
+  
+  Widget _crearCarrera(SigninBloc bloc) {
+
+    return StreamBuilder(
+      stream: bloc.lastnameStream,
+      builder: (BuildContext context, AsyncSnapshot snapshot){
+        
+      return Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        
+
+        child:  DropdownButton<String>(
+        
+        //value: dropdownValue,
+        hint: new Text('Carrera'),
+        icon: Icon(Icons.arrow_drop_down), iconSize: 30, isExpanded: true, elevation: 16,
+        underline: Container( height: 2, color: Colors.deepPurpleAccent, ),
+        onChanged: (String newValue) {
+          setState(() {
+            //dropdownValue = newValue;
+          });
+        },
+        items: <String>['Ing. de Telecomunicaciones', 'Ing. de Sistemas', 'Ing. Mecatrónica','Ing. Biomédica','Ing. Civil', 'Ing. Quimica']
+          .map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(value: value, child: Text(value), );
+          })
+          .toList(),
+      ),
+      );
+      },
+    );
+
+
+  }
+
+  
+  Widget _creartipoInscripcion(SigninBloc bloc) {
+
+    return StreamBuilder(
+      stream: bloc.lastnameStream,
+      builder: (BuildContext context, AsyncSnapshot snapshot){
+        
+      return Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        
+
+        child:  DropdownButton<String>(
+        
+        //value: dropdownValue,
+        hint: new Text('Tipo de inscripción'),
+        icon: Icon(Icons.arrow_drop_down), iconSize: 30, isExpanded: true, elevation: 16,
+        underline: Container( height: 2, color: Colors.deepPurpleAccent, ),
+        onChanged: (String newValue) {
+          setState(() {
+            //dropdownValue = newValue;
+          });
+        },
+        items: <String>['Miembro IEEE', 'Estudiante', 'Profesional','Solo taller','Solo 2 charlas','Solo hackathon']
+          .map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(value: value, child: Text(value), );
+          })
+          .toList(),
+      ),
+      );
+      },
+    );
+
+
+  }
+  Widget _crearBoton( SigninBloc bloc) {
 
     // formValidStream
     // snapshot.hasData
     //  true ? algo si true : algo si false
 
     return StreamBuilder(
-      stream: bloc.formValidStream,
+      stream: bloc.fromValidStram,
       builder: (BuildContext context, AsyncSnapshot snapshot){
         
         return RaisedButton(
@@ -161,18 +348,17 @@ class SignInPage extends StatelessWidget {
     );
   }
 
-   _register(LoginBloc bloc, BuildContext context) async {
+   _register(SigninBloc bloc, BuildContext context) async {
       
-    Map info = await personProvider.nuevoUsuario(bloc.email, bloc.password );
+    Map info = await personProvider.nuevoUsuario(bloc.name, bloc.lastname, bloc.email, bloc.password );
 
     if ( info['ok'] ) {
-       Navigator.pushReplacementNamed(context, '/');
+       Navigator.pushReplacementNamed(context, 'menumaterial');
     } else {
       mostrarAlerta( context, info['mensaje'] );
     }
     
   }
-
 
   Widget _crearFondo(BuildContext context) {
 
@@ -212,5 +398,4 @@ class SignInPage extends StatelessWidget {
     );
 
   }
-
 }

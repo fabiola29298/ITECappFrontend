@@ -74,7 +74,7 @@ class ScrollPage extends StatelessWidget {
                 child: Text('   Invitado    ', style: TextStyle(fontSize: 20.0),),
               ),
               onPressed: (){
-                Navigator.pushNamed(context, '/' );
+                Navigator.pushNamed(context, 'menumaterial' );
               },
             ),
           ],

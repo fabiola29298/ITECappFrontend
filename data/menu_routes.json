@@ -50,6 +50,12 @@
             "ruta": "asistenciaUser",
             "icon": "avatar",
             "texto": "Asistencia"
+        },
+
+        {
+            "ruta": "asistenciaUser",
+            "icon": "avatar",
+            "texto": "Cerrar sesion"
         }
 
     ]

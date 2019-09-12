@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:itec_app/src/bloc/login_bloc.dart';
 export 'package:itec_app/src/bloc/login_bloc.dart';
 
+import 'package:itec_app/src/bloc/singin_bloc.dart';
+export 'package:itec_app/src/bloc/singin_bloc.dart';
 
 class Provider extends InheritedWidget {
   final loginBloc      = new LoginBloc();
+  final singinBloc     = new SigninBloc();
   static Provider _instancia;
 
   factory Provider({ Key key, Widget child }) {
@@ -32,5 +35,7 @@ class Provider extends InheritedWidget {
   static LoginBloc of ( BuildContext context ) {
     return ( context.inheritFromWidgetOfExactType(Provider) as Provider ).loginBloc;
   }
-
+  static SigninBloc signinBloc ( BuildContext context ) {
+    return ( context.inheritFromWidgetOfExactType(Provider) as Provider ).singinBloc;
+  }
 }
