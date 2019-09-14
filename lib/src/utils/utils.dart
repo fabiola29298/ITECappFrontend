@@ -31,3 +31,22 @@ void mostrarAlerta(BuildContext context, String mensaje ) {
 
 
 }
+
+void mostrarCargando(BuildContext context ) {
+
+  showDialog(
+    context: context,
+    builder: ( context ) {
+      return AlertDialog(
+        title: Text('Cargando'),
+        content: Container(
+          margin: EdgeInsets.all(20.0),
+          child: CircularProgressIndicator(),
+        ),
+         
+      );
+    }
+  );
+
+
+}

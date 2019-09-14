@@ -34,9 +34,9 @@ class PersonProvider {
   }
 
 
-  Future<Map<String, dynamic>> nuevoUsuario(String name, String lastname, String email, String password ) async {
+  Future<Map<String, dynamic>> nuevoUsuario(String name, String lastname, String email, String password, String genero, String carrera, String tipoInscripcion ) async {
 
-    Map<String, dynamic>  authData = {'email': email,'password' : password,'name':name,'last_name':lastname};
+    Map<String, dynamic>  authData = {'email': email,'password' : password,'name':name,'last_name':lastname, 'gender': genero, 'career': carrera, 'type_inscription': tipoInscripcion};
     final url = '$_url/person';
     final resp = await http.post(url,body:  authData); 
 

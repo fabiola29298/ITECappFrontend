@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 
 import 'package:itec_app/src/pages/home_page.dart';
+import 'package:itec_app/src/pages/menu_principal_adm/registro_activity_page.dart';
 import 'package:itec_app/src/pages/menu_principal_user/asistencia_page.dart';
 import 'package:itec_app/src/pages/menu_principal_user/auspiciador_page.dart';
 import 'package:itec_app/src/pages/menu_principal_user/expositores_page.dart';
@@ -24,13 +25,16 @@ Map<String, WidgetBuilder> getAplicationRouter(){
          'menumaterial':(BuildContext context)=> MenuMaterialDesignPage(),
          'login'            : (BuildContext context)=> LoginPage(),
          'signin'           : (BuildContext context)=> SignInPage(),
+         //USER
          'asistenciaUser'        : (BuildContext context)=> AsistenciaPage(),
          'expositoresUser'       : (BuildContext context)=> ExpositoresPage(),
          'auspiciadorUser'       : (BuildContext context)=> AuspiciadorPage(),
          'itinerarioUser'        : (BuildContext context)=> ItinerarioPage(),
          'mapaUser'              : (BuildContext context)=> MapaCampusPage(),
          'notificacionesUser'    : (BuildContext context)=> NotificacionesPage(),
-         'programaUser'          : (BuildContext context)=> ProgramaPage()  
-         
+         'programaUser'          : (BuildContext context)=> ProgramaPage(),
+
+         //ADMIN  
+         'registroActivityAdmin'          : (BuildContext context)=> RegistroActivityPage(),
   };
 }  

@@ -5,15 +5,14 @@ import 'package:itec_app/src/providers/person_provider.dart';
 import 'package:itec_app/src/utils/utils.dart'; 
 
 class SignInPage extends StatefulWidget {
-   List<String> _generos = <String>['', 'red', 'green', 'blue', 'orange'];
-  String _color = '';
+   
   @override
   _SignInPageState createState() => _SignInPageState();
 }
 
 class _SignInPageState extends State<SignInPage> {
-    final personProvider = new PersonProvider();
-
+  final personProvider = new PersonProvider(); 
+   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,13 +69,13 @@ class _SignInPageState extends State<SignInPage> {
                 SizedBox( height: 12.0 ),
                 _crearPassword( bloc ),
                 SizedBox( height: 12.0 ),
-              /*_generoEmail(bloc),
+                _crearGenero(bloc),
                 SizedBox( height: 12.0 ),
                 _creartipoInscripcion(bloc),
                 SizedBox( height: 12.0 ),
                 _crearCarrera(bloc),
                 SizedBox( height: 12.0 ),
-                */
+                
 
                 _crearBoton( bloc ),
                 
@@ -218,10 +217,10 @@ class _SignInPageState extends State<SignInPage> {
 
   
   
-  Widget _generoEmail(SigninBloc bloc) {
+  Widget _crearGenero(SigninBloc bloc) {
 
     return StreamBuilder(
-      stream: bloc.lastnameStream,
+      stream: bloc.genderStream,
       builder: (BuildContext context, AsyncSnapshot snapshot){
         
       return Container(
@@ -230,22 +229,25 @@ class _SignInPageState extends State<SignInPage> {
 
         child:  DropdownButton<String>(
         
-        //value: dropdownValue,
+        value: snapshot.data,
+        
         hint: new Text('Genero'),
         icon: Icon(Icons.arrow_drop_down), iconSize: 30, isExpanded: true, elevation: 16,
         underline: Container( height: 2, color: Colors.deepPurpleAccent, ),
         onChanged: (String newValue) {
-          setState(() {
-            //dropdownValue = newValue;
+          setState(() { 
+            bloc.changeGender(newValue);         
           });
-        },
-        items: <String>['Femenino', 'Masculino', 'Otro']
+        }, 
+        items: <String>['Femenino', 'Masculino', 'Otro' ]
           .map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(value: value, child: Text(value), );
           })
-          .toList(),
+          .toList() 
       ),
       );
+//<String>
+          
       },
     );
 
@@ -256,7 +258,7 @@ class _SignInPageState extends State<SignInPage> {
   Widget _crearCarrera(SigninBloc bloc) {
 
     return StreamBuilder(
-      stream: bloc.lastnameStream,
+      stream: bloc.careerStream,
       builder: (BuildContext context, AsyncSnapshot snapshot){
         
       return Container(
@@ -265,13 +267,13 @@ class _SignInPageState extends State<SignInPage> {
 
         child:  DropdownButton<String>(
         
-        //value: dropdownValue,
+        value: snapshot.data,
         hint: new Text('Carrera'),
         icon: Icon(Icons.arrow_drop_down), iconSize: 30, isExpanded: true, elevation: 16,
         underline: Container( height: 2, color: Colors.deepPurpleAccent, ),
         onChanged: (String newValue) {
-          setState(() {
-            //dropdownValue = newValue;
+          setState(() { 
+             bloc.changeCareer(newValue);
           });
         },
         items: <String>['Ing. de Telecomunicaciones', 'Ing. de Sistemas', 'Ing. Mecatrónica','Ing. Biomédica','Ing. Civil', 'Ing. Quimica']
@@ -291,7 +293,7 @@ class _SignInPageState extends State<SignInPage> {
   Widget _creartipoInscripcion(SigninBloc bloc) {
 
     return StreamBuilder(
-      stream: bloc.lastnameStream,
+      stream: bloc.typeStream,
       builder: (BuildContext context, AsyncSnapshot snapshot){
         
       return Container(
@@ -300,13 +302,13 @@ class _SignInPageState extends State<SignInPage> {
 
         child:  DropdownButton<String>(
         
-        //value: dropdownValue,
+        value: snapshot.data,
         hint: new Text('Tipo de inscripción'),
         icon: Icon(Icons.arrow_drop_down), iconSize: 30, isExpanded: true, elevation: 16,
         underline: Container( height: 2, color: Colors.deepPurpleAccent, ),
         onChanged: (String newValue) {
-          setState(() {
-            //dropdownValue = newValue;
+          setState(() { 
+             bloc.changeType(newValue);
           });
         },
         items: <String>['Miembro IEEE', 'Estudiante', 'Profesional','Solo taller','Solo 2 charlas','Solo hackathon']
@@ -342,17 +344,37 @@ class _SignInPageState extends State<SignInPage> {
           elevation: 0.0,
           color: Colors.deepPurple,
           textColor: Colors.white,
-          onPressed: snapshot.hasData ? ()=> _register(bloc, context) : null
+          onPressed:  (){
+            if (bloc.name ==null || bloc.lastname ==null || bloc.email ==null || bloc.password ==null){
+              mostrarAlerta(context, 'Falta datos de registro');
+              return;
+            }
+            if (bloc.name =='' || bloc.lastname =='' || bloc.email =='' || bloc.password ==''){
+              mostrarAlerta(context, 'Falta datos de registro');
+              return;
+            }
+            _register(bloc, context);
+          }   
         );
       },
     );
   }
 
    _register(SigninBloc bloc, BuildContext context) async {
-      
-    Map info = await personProvider.nuevoUsuario(bloc.name, bloc.lastname, bloc.email, bloc.password );
+     String career ='', type='', gender ='';
+            if (bloc.career !=null ){
+              career=bloc.career;
+            }
+            if (bloc.gender !=null ){
+              type=bloc.gender;
+            }
+            if (bloc.type !=null ){
+              gender=bloc.type;
+            }
+    Map info = await personProvider.nuevoUsuario(bloc.name, bloc.lastname, bloc.email, bloc.password, gender, career, type );
 
     if ( info['ok'] ) {
+      mostrarCargando( context  );
        Navigator.pushReplacementNamed(context, 'menumaterial');
     } else {
       mostrarAlerta( context, info['mensaje'] );

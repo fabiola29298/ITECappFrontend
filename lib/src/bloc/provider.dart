@@ -5,9 +5,13 @@ export 'package:itec_app/src/bloc/login_bloc.dart';
 import 'package:itec_app/src/bloc/singin_bloc.dart';
 export 'package:itec_app/src/bloc/singin_bloc.dart';
 
+import 'package:itec_app/src/bloc/activity_bloc.dart';
+export 'package:itec_app/src/bloc/activity_bloc.dart';
+
 class Provider extends InheritedWidget {
   final loginBloc      = new LoginBloc();
   final singinBloc     = new SigninBloc();
+  final activityBloc     = new ActivityBloc();
   static Provider _instancia;
 
   factory Provider({ Key key, Widget child }) {
@@ -37,5 +41,9 @@ class Provider extends InheritedWidget {
   }
   static SigninBloc signinBloc ( BuildContext context ) {
     return ( context.inheritFromWidgetOfExactType(Provider) as Provider ).singinBloc;
+  }
+
+  static ActivityBloc activityBlocOf ( BuildContext context ) {
+    return ( context.inheritFromWidgetOfExactType(Provider) as Provider ).activityBloc;
   }
 }

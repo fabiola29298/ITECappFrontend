@@ -6,7 +6,7 @@ import 'package:itec_app/src/widgets/menu_widget.dart';
 class ProgramaPage extends StatelessWidget {
 
    
-  final activitiesProvider = new ActivitiesProvider();
+  final activitiesProvider = new ActivityProvider();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
