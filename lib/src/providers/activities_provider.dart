@@ -1,16 +1,12 @@
-import 'dart:io';
-
-import 'package:http/http.dart' as http;
-import 'package:http_parser/http_parser.dart';
+ 
+import 'package:http/http.dart' as http; 
 
 import 'dart:convert';
 import 'package:itec_app/src/models/activity_model.dart';
-import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
-import 'package:mime_type/mime_type.dart';
+import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart'; 
 class ActivityProvider{
   final _prefs = new PreferenciasUsuario();
 
-  //String _apikey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7InJvbGUiOiJBRE1JTl9ST0xFIiwic3RhdHVzIjp0cnVlLCJnb29nbGUiOmZhbHNlLCJfaWQiOiI1ZDU3ODg4ZjE1Zjg2YzAwMTYyNjI4ZjkiLCJuYW1lIjoiYWRtaW4xMCIsImxhc3RfbmFtZSI6Imxhc3RfYWRtaW4iLCJlbWFpbCI6ImFkbWluMTBAZ21haWwuY29tIiwiX192IjowfSwiaWF0IjoxNTY3MjIyMzc5LCJleHAiOjE1NjcyMjQ5NzF9.vEBXpIsN3UnpaGTMEumSA-IlMqOl62VR8Cs4xv8Sbjg';
   String _url    = 'itec-ucb.herokuapp.com';
 
   //Mostrar - GET / Movie/now_playing
@@ -82,41 +78,6 @@ class ActivityProvider{
   } 
 
 
-  Future<String> subirImagen( File imagen ) async {
-
-    final url = Uri.parse('https://api.cloudinary.com/v1_1/dsgwbxs8g/image/upload?upload_preset=to3t6mrc');
-    final mimeType = mime(imagen.path).split('/'); //image/jpeg
-
-    final imageUploadRequest = http.MultipartRequest(
-      'POST',
-      url
-    );
-
-    final file = await http.MultipartFile.fromPath(
-      'file', 
-      imagen.path,
-      contentType: MediaType( mimeType[0], mimeType[1] )
-    );
-
-    imageUploadRequest.files.add(file);
-
-
-    final streamResponse = await imageUploadRequest.send();
-    final resp = await http.Response.fromStream(streamResponse);
-
-    if ( resp.statusCode != 200 && resp.statusCode != 201 ) {
-      print('Algo salio mal');
-      print( resp.body );
-      return null;
-    }
-
-    final respData = json.decode(resp.body);
-    print('respData $respData' );
-
-    return respData['secure_url'];
-
-
-  }
 
 
 }

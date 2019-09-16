@@ -55,7 +55,7 @@ class Activity {
 
 
   Activity.fromJsonMap(Map<String,dynamic> json){
-    id= json['id']; 
+    id= json['_id']; 
     person= json['person']; 
     status= json['status']; 
     name= json['name']; 
@@ -72,7 +72,7 @@ class Activity {
   }
 
   factory Activity.fromJson(Map<String, dynamic> json) => new Activity(
-    id           : json['id'], 
+    id           : json['_id'], 
     person       : json['person'], 
     status       : json['status'], 
     name         : json['name'], 
@@ -87,7 +87,7 @@ class Activity {
     );
 
     Map<String, dynamic> toJson() => {
-        // "id"         : id,
+         "id"         : id,
                  
         "person"        : person,     
         "status"        : status,     

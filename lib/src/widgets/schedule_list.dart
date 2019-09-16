@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:itec_app/src/models/activity_model.dart';
+import 'package:itec_app/src/models/schedule_model.dart';
 import 'package:itec_app/src/providers/schedule_provider.dart';
-//import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
-import 'package:itec_app/src/utils/utils.dart';
+import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart'; 
 
-class ActivitiesList extends StatelessWidget {
-  final List<Activity> activities;
- //final _prefs = new PreferenciasUsuario();
+class ScheduleList extends StatelessWidget {
+  final List<Schedule> schedule;
+ final _prefs = new PreferenciasUsuario();
  final scheduleProvider = new ScheduleProvider(); 
- //final scaffoldKey = GlobalKey<ScaffoldState>();
-  ActivitiesList({@required this.activities});
+  ScheduleList({@required this.schedule});
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +17,13 @@ class ActivitiesList extends StatelessWidget {
 
     return  Column(
            
-           children: _activitiesCard(context),
+           children: _scheduleCard(context),
          ) ;
   }
 
-  List<Widget> _activitiesCard (BuildContext context){
-    return activities.map((activity){
+  List<Widget> _scheduleCard (BuildContext context){
+    return schedule.map((schedule){ 
+      Activity activity = Activity.fromJsonMap(schedule.activity);
       return Container(
         margin: EdgeInsets.all( 10.0),
         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20.0),
@@ -94,11 +94,9 @@ class ActivitiesList extends StatelessWidget {
                      ]), 
                 onTap: () { /* react to the tile being tapped */ 
                       
-                     // print('ID activity: ${activity.id}');
-                     // print('ID person  : ${_prefs.idpref}');
+                      print('ID activity: ${activity.id}');
+                      print('ID person  : ${_prefs.idpref}');
                       _register(context, activity.id);
-                     //mostrarSnackbar( 'Guardado');
-                     //mostrarGuardado(context, 'Se guardo con exito. Lo puede ver en su itinerario');
                 },dense: true,
 
               ),
@@ -110,22 +108,12 @@ class ActivitiesList extends StatelessWidget {
       );
     }).toList();
   }
-  Future<bool> _register(BuildContext context, String idActivity ) async { 
-    mostrarCargando(context);        
-    Map info = await scheduleProvider.nuevoSchedule(idActivity );
-    
-    if ( info['ok'] ) {
-      
-      Navigator.of(context).pop();
-      //Navigator.pushReplacementNamed(context, 'itinerarioUser');
-      return true;
-    } else {
-      mostrarAlerta( context, info['mensaje'] );
-      return false;
-    }
+   void _register(BuildContext context, String idActivity ) async { 
+            
+ 
     
   }
-  
+
  
   
   

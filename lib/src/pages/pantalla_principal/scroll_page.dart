@@ -28,7 +28,7 @@ class ScrollPage extends StatelessWidget {
     return Container(
       width:  double.infinity,
       height: double.infinity,
-      color: Color.fromRGBO(108, 192, 218, 1.0),
+      color:Color.fromRGBO(24, 64, 87, 1.0),
        
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -37,7 +37,7 @@ class ScrollPage extends StatelessWidget {
 
             RaisedButton(
               shape: StadiumBorder(),
-              color: Colors.blueAccent,
+              color: Color(0xFF1F636E),
               textColor: Colors.white,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
@@ -52,7 +52,7 @@ class ScrollPage extends StatelessWidget {
             RaisedButton(
               
               shape: StadiumBorder(),
-              color: Colors.blueAccent,
+              color: Color(0xFF1F636E),
               textColor: Colors.white,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
@@ -67,7 +67,7 @@ class ScrollPage extends StatelessWidget {
 
             RaisedButton(
               shape: StadiumBorder(),
-              color: Colors.blueAccent,
+              color: Color(0xFF1F636E),
               textColor: Colors.white,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
@@ -88,14 +88,14 @@ class ScrollPage extends StatelessWidget {
     return Container(
       width:  double.infinity,
       height: double.infinity,
-      color: Color.fromRGBO(108, 192, 218, 1.0)
+      color: Color.fromRGBO(24, 64, 87, 1.0)
     );
   }
   Widget _imagenFondo(){
     return Container(
       width:  double.infinity,
       height: double.infinity, 
-      child: Image(image: AssetImage('assets/img/fondo.jpg'),
+      child: Image(image: AssetImage('assets/img/fondopantalla.png'),
         fit:BoxFit.cover),
 
     );
@@ -106,8 +106,8 @@ class ScrollPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               SizedBox(height: 20.0),
-              Text('ITEC 2019', style: estilo),
-              Text('UCB', style: estilo),
+              //Text('ITEC 2019', style: estilo),
+              //Text('UCB', style: estilo),
               Expanded(
                 child: Container(),
               ),

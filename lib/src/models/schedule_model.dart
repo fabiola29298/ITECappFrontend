@@ -3,15 +3,33 @@
 //     final client = clientFromJson(jsonString);
 
 import 'dart:convert';
+ 
 
-Schedule clientFromJson(String str) => Schedule.fromJson(json.decode(str));
+Schedule scheduleFromJson(String str) => Schedule.fromJson(json.decode(str));
 
-String clientToJson(Schedule data) => json.encode(data.toJson());
+String scheduleToJson(Schedule data) => json.encode(data.toJson());
+class Schedules{
+  //contenedor de todos los items
+  //MAPEO
+  List<Schedule> items = new List();
 
+  Schedules.fromJsonList( List<dynamic> jsonList){
+
+    if (jsonList == null) return;
+
+    jsonList.forEach( (item) {
+      final activity = Schedule.fromJsonMap(item); 
+      items.add(activity);
+    });
+  }
+
+
+  // recibir el mapa de todo
+}
 class Schedule {
     bool status;
     String id;
-    String activity;
+    Map<String, dynamic> activity;
     String person;
     int v;
 
@@ -22,7 +40,13 @@ class Schedule {
         this.person,
         this.v,
     });
-
+    Schedule.fromJsonMap(Map<String, dynamic> json) {
+        status   = json["status"];
+        id       = json["_id"]; 
+        activity = json["activity"];
+        person   = json["person"];
+        v        = json["__v"];
+    }
     factory Schedule.fromJson(Map<String, dynamic> json) => Schedule(
         status: json["status"],
         id: json["_id"],
