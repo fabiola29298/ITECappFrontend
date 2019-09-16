@@ -12,6 +12,9 @@ final _icons = <String, IconData>{
   'schedule': Icons.schedule,
   'people': Icons.people,
   'announcement': Icons.announcement,
+  'home': Icons.home,
+  'cerrar': Icons.account_circle,
+  'gps':Icons.person_pin_circle
 
 };
 

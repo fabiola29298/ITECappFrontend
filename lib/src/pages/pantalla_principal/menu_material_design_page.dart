@@ -31,8 +31,8 @@ class MenuMaterialDesignPage extends StatelessWidget {
           begin: FractionalOffset(0.0, 0.6),
           end:   FractionalOffset(0.0, 1.0),
           colors: [
-            Color.fromRGBO(52, 54, 101, 1.0),
-            Color.fromRGBO(35, 37, 57, 1.0)
+            Color(0xFF1D3F57),
+            Color(0xFF1F636E)
           ]
         )
       ),
@@ -114,7 +114,7 @@ class MenuMaterialDesignPage extends StatelessWidget {
           ),
           
           child:   RaisedButton( 
-                color: Color.fromRGBO(62, 66, 107, 0.7),
+                color: Color.fromRGBO(31, 57, 110, 0.7),
                 onPressed: (){
                     Navigator.pushNamed(context,   url   ); 
                 },
@@ -122,11 +122,11 @@ class MenuMaterialDesignPage extends StatelessWidget {
                   children: <Widget>[
                    
                     CircleAvatar(
-                      backgroundColor: color,
+                      backgroundColor: Color.fromRGBO(31, 57, 110, 0.0),
                       radius: 35.0,
-                      child: Icon( icono, color: Colors.white, size: 30.0 ),
+                      child: Icon( icono, color: Colors.white54, size: 30.0 ),
                     ),
-                    Text( texto , style: TextStyle( color: color )),
+                    Text( texto , style: TextStyle( color: Colors.white54 )),
                     
                   ],
                 ),

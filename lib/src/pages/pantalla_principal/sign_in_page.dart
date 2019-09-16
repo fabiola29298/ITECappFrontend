@@ -108,7 +108,7 @@ class _SignInPageState extends State<SignInPage> {
         child: TextField(
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
-            icon: Icon( Icons.alternate_email, color: Colors.deepPurple ),
+            icon: Icon( Icons.alternate_email, color:  Color(0xFF1D3F57)  ),
             hintText: 'ejemplo@correo.com',
             labelText: 'Correo electrónico*',
             //counterText: snapshot.data,
@@ -138,7 +138,7 @@ class _SignInPageState extends State<SignInPage> {
         child: TextField(
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
-            icon: Icon( Icons.person, color: Colors.deepPurple ),
+            icon: Icon( Icons.person, color:  Color(0xFF1D3F57)  ),
             hintText: 'nombre',
             labelText: 'Nombres*',
             //counterText: snapshot.data,
@@ -168,7 +168,7 @@ class _SignInPageState extends State<SignInPage> {
         child: TextField(
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
-            icon: Icon( Icons.person_outline, color: Colors.deepPurple ),
+            icon: Icon( Icons.person_outline, color:  Color(0xFF1D3F57)  ),
             hintText: 'apellido',
             labelText: 'Apellidos*',
             //counterText: snapshot.data,
@@ -198,7 +198,7 @@ class _SignInPageState extends State<SignInPage> {
           child: TextField(
             obscureText: true,
             decoration: InputDecoration(
-              icon: Icon( Icons.lock_outline, color: Colors.deepPurple ),
+              icon: Icon( Icons.lock_outline, color:  Color(0xFF1D3F57)  ),
               labelText: 'Contraseña*',
               //counterText: snapshot.data,
               errorText: snapshot.error
@@ -233,7 +233,7 @@ class _SignInPageState extends State<SignInPage> {
         
         hint: new Text('Genero'),
         icon: Icon(Icons.arrow_drop_down), iconSize: 30, isExpanded: true, elevation: 16,
-        underline: Container( height: 2, color: Colors.deepPurpleAccent, ),
+        underline: Container( height: 2, color:  Color(0xFF1D3F57)  ),
         onChanged: (String newValue) {
           setState(() { 
             bloc.changeGender(newValue);         
@@ -270,7 +270,7 @@ class _SignInPageState extends State<SignInPage> {
         value: snapshot.data,
         hint: new Text('Carrera'),
         icon: Icon(Icons.arrow_drop_down), iconSize: 30, isExpanded: true, elevation: 16,
-        underline: Container( height: 2, color: Colors.deepPurpleAccent, ),
+        underline: Container( height: 2, color:  Color(0xFF1D3F57) ),
         onChanged: (String newValue) {
           setState(() { 
              bloc.changeCareer(newValue);
@@ -305,7 +305,7 @@ class _SignInPageState extends State<SignInPage> {
         value: snapshot.data,
         hint: new Text('Tipo de inscripción'),
         icon: Icon(Icons.arrow_drop_down), iconSize: 30, isExpanded: true, elevation: 16,
-        underline: Container( height: 2, color: Colors.deepPurpleAccent, ),
+        underline: Container( height: 2, color:  Color(0xFF1D3F57)   ),
         onChanged: (String newValue) {
           setState(() { 
              bloc.changeType(newValue);
@@ -342,7 +342,7 @@ class _SignInPageState extends State<SignInPage> {
             borderRadius: BorderRadius.circular(5.0)
           ),
           elevation: 0.0,
-          color: Colors.deepPurple,
+          color:  Color(0xFF1D3F57) ,
           textColor: Colors.white,
           onPressed:  (){
             if (bloc.name ==null || bloc.lastname ==null || bloc.email ==null || bloc.password ==null){
@@ -392,8 +392,8 @@ class _SignInPageState extends State<SignInPage> {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: <Color> [
-            Color.fromRGBO(63, 63, 156, 1.0),
-            Color.fromRGBO(90, 70, 178, 1.0)
+            Color(0xFF1D3F57),
+            Color(0xFF1F636E)
           ]
         )
       ),
@@ -409,7 +409,7 @@ class _SignInPageState extends State<SignInPage> {
           padding: EdgeInsets.only(top: 80.0),
           child: Column(
             children: <Widget>[
-              Icon( Icons.person_pin_circle, color: Colors.white, size: 100.0 ),
+              Icon( Icons.person, color: Colors.white, size: 100.0 ),
               SizedBox( height: 10.0, width: double.infinity ),
               Text('ITEC 2019', style: TextStyle( color: Colors.white, fontSize: 25.0 ))
             ],

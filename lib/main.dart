@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           //brightness: Brightness.dark,
           accentColorBrightness: Brightness.dark,
           primaryColor: Color.fromRGBO(13,71,161,1.0),
-          primaryColorLight: Color.fromRGBO(84,114,211,1.0),
+          primaryColorLight: Color(0xFF1D3F57),
           primaryColorDark: Color.fromRGBO(0,33,113, 1.0),
           buttonColor: Color.fromRGBO(13,71,161,1.0), 
           accentColor: Color.fromRGBO(249,168,37,1.0), 

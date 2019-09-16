@@ -37,7 +37,7 @@ class ScrollPage extends StatelessWidget {
 
             RaisedButton(
               shape: StadiumBorder(),
-              color: Color(0xFF1F636E),
+              color: Color(0xFF1F396E),
               textColor: Colors.white,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
@@ -52,7 +52,7 @@ class ScrollPage extends StatelessWidget {
             RaisedButton(
               
               shape: StadiumBorder(),
-              color: Color(0xFF1F636E),
+              color: Color(0xFF1F396E),
               textColor: Colors.white,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
@@ -67,7 +67,7 @@ class ScrollPage extends StatelessWidget {
 
             RaisedButton(
               shape: StadiumBorder(),
-              color: Color(0xFF1F636E),
+              color: Color(0xFF1F396E),
               textColor: Colors.white,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
