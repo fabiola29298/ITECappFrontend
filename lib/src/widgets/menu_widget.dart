@@ -40,14 +40,15 @@ class MenuWidget extends StatelessWidget {
               ),
 
             ),
-            ListTile(
+           /* ListTile(
               leading: Icon(Icons.home, color: Colors.blue),
               trailing: Icon ( Icons.keyboard_arrow_right, color: Colors.blue ),
               title: Text('Inicio'),
               onTap: (){
                 Navigator.pushReplacementNamed(context, '/');
               },
-            ), 
+            ),
+            */ 
             Divider(),
 
     ]; 

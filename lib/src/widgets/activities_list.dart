@@ -111,7 +111,7 @@ class ActivitiesList extends StatelessWidget {
     }).toList();
   }
   Future<bool> _register(BuildContext context, String idActivity ) async { 
-    mostrarCargando(context);        
+    mostrarCargando(context, 'Agregando a su itinerario');        
     Map info = await scheduleProvider.nuevoSchedule(idActivity );
     
     if ( info['ok'] ) {
@@ -120,6 +120,7 @@ class ActivitiesList extends StatelessWidget {
       //Navigator.pushReplacementNamed(context, 'itinerarioUser');
       return true;
     } else {
+      Navigator.of(context).pop();
       mostrarAlerta( context, info['mensaje'] );
       return false;
     }

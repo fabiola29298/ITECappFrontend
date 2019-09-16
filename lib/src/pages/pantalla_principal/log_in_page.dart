@@ -163,11 +163,13 @@ class LoginPage extends StatelessWidget {
    _login(LoginBloc bloc, BuildContext context) async {
       
     Map info = await personProvider.login(bloc.email, bloc.password );
-
+     mostrarCargando( context,'Ingresando'  );
     if ( info['ok'] ) {
+      Navigator.of(context).pop();
       Center(child: CircularProgressIndicator());
        Navigator.pushReplacementNamed(context, 'menumaterial');
     } else {
+      Navigator.of(context).pop();
       mostrarAlerta( context, info['mensaje'] );
     }
     

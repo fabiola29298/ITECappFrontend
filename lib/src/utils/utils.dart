@@ -51,7 +51,7 @@ void mostrarGuardado(BuildContext context, String mensaje ) {
 
 
 }
-void mostrarCargando(BuildContext context ) {
+void mostrarCargando(BuildContext context, String mensaje ) {
 
   showDialog(
     context: context,
@@ -66,7 +66,7 @@ void mostrarCargando(BuildContext context ) {
             new CircularProgressIndicator(),
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
-                                         child: new Text("Loading"),
+                    child: new Text("Cargando.. \n$mensaje"),
                   ),
           ],
         )

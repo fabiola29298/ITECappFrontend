@@ -46,8 +46,8 @@ class ProgramaPage extends StatelessWidget {
         children: <Widget>[
         Container(
           padding: EdgeInsets.only(left:20.0),
-          child: Text('Programa de ITEC',
-                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
+          child: Text('Clic en la actividad para agregar a su itinerarior personalizado',
+                style: TextStyle(color: Colors.black , fontSize: 15.0),
                 )),
           SizedBox(height: 5.0),
           FutureBuilder(

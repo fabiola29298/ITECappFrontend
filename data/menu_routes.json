@@ -1,7 +1,7 @@
 {
     "nombreApp": "Rutas",
     "rutas": [{
-            "ruta": "menumateria",
+            "ruta": "menumaterial",
             "icon": "home",
             "texto": "Inicio"
         },

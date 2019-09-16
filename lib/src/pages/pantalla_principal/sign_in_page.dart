@@ -372,11 +372,12 @@ class _SignInPageState extends State<SignInPage> {
               gender=bloc.type;
             }
     Map info = await personProvider.nuevoUsuario(bloc.name, bloc.lastname, bloc.email, bloc.password, gender, career, type );
-
+    mostrarCargando( context,'Guardando su registro'  );
     if ( info['ok'] ) {
-      mostrarCargando( context  );
+      Navigator.of(context).pop();
        Navigator.pushReplacementNamed(context, 'menumaterial');
     } else {
+      Navigator.of(context).pop();
       mostrarAlerta( context, info['mensaje'] );
     }
     

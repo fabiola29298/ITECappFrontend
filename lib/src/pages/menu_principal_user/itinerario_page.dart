@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:itec_app/src/providers/schedule_provider.dart';
 import 'package:itec_app/src/widgets/menu_widget.dart';
 import 'package:itec_app/src/widgets/schedule_list.dart';
@@ -6,8 +7,25 @@ import 'package:itec_app/src/widgets/schedule_list.dart';
 
    
   final scheduleProvider = new ScheduleProvider();
+  final _prefs = new PreferenciasUsuario();
   @override
   Widget build(BuildContext context) {
+
+    if  (_prefs.token==null || _prefs.token=='' ){
+      return  Scaffold(
+      appBar:AppBar( title: Text('Itinerario') ),
+      drawer: MenuWidget(),
+      body: CustomScrollView(
+        slivers: <Widget>[ 
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [ Text('Debe registrarse para crear su itinerario personalizado') ]
+            ))]
+      ) );
+    }
+    else{
+
+    
     return Scaffold(
       appBar:AppBar(
         title: Text('Itinerario'),
@@ -36,6 +54,8 @@ import 'package:itec_app/src/widgets/schedule_list.dart';
          
         
       );
+
+      }
   }
   Widget _obtenerScheduleCard(BuildContext context){
     return Container(

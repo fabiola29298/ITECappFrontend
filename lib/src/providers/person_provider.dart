@@ -8,12 +8,12 @@ import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
 class PersonProvider {
   String _url  ='itec-ucb.herokuapp.com';
   final _prefs = new PreferenciasUsuario();
-
+  String _url2  ='https://itec-ucb.herokuapp.com';
   //LOGIN
   Future<Map<String, dynamic>> login( String email, String password) async {
 
     Map<String, dynamic>  authData = {'email': email,'password' : password};
-    final url = '$_url/login';
+    final url = '$_url2/login';
     final resp = await http.post(url,body:  authData); 
 
     Map<String, dynamic> decodedResp = json.decode( resp.body );
@@ -54,7 +54,7 @@ Future <List<Person>> getSpeakers() async{
   Future<Map<String, dynamic>> nuevoUsuario(String name, String lastname, String email, String password, String genero, String carrera, String tipoInscripcion ) async {
 
     Map<String, dynamic>  authData = {'email': email,'password' : password,'name':name,'last_name':lastname, 'gender': genero, 'career': carrera, 'type_inscription': tipoInscripcion};
-    final url = '$_url/person';
+    final url = '$_url2/person';
     final resp = await http.post(url,body:  authData); 
 
     Map<String, dynamic> decodedResp = json.decode( resp.body );

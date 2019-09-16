@@ -217,15 +217,16 @@ class _RegistroActivityPageState extends State<RegistroActivityPage> {
   }
 
     void _submit(ActivityBloc bloc, BuildContext context) async {
-      mostrarCargando( context  );
+      mostrarCargando( context,'Guardando Actividad'  );
     print("respuesta: ${bloc.name} - ${bloc.description} - ${bloc.type} - ${bloc.date} - ${bloc.starttime} - ${bloc.classroom}  ");
       
       Map info = await activityProvider.nuevoActividad(bloc.name, bloc.description, bloc.type, bloc.date, bloc.starttime, bloc.classroom );
 
       if ( info['ok'] ) {
-        mostrarCargando( context  );
+        Navigator.of(context).pop();
         Navigator.pushReplacementNamed(context, 'menumaterial');
       } else {
+        Navigator.of(context).pop();
         mostrarAlerta( context, info['mensaje'] );
       }
       
