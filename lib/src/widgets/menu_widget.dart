@@ -34,7 +34,7 @@ class MenuWidget extends StatelessWidget {
               child: Container(),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/img/menu-img.jpg'),
+                  image: AssetImage('assets/img/menu-img.png'),
                   fit: BoxFit.cover
                 )
               ),
@@ -60,7 +60,7 @@ class MenuWidget extends StatelessWidget {
         trailing: Icon ( Icons.keyboard_arrow_right, color: Colors.blue ),
         onTap: () {
 
-          Navigator.pushNamed(context, opt['ruta'] ); 
+          Navigator.pushNamed(context, opt['ruta'],arguments: opt['texto'] ); 
         },
       );
 

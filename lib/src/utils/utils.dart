@@ -1,6 +1,14 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
 
+import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
+void cerrarSesion(){
+  final _prefs = new PreferenciasUsuario();
+  _prefs.idpref = '';
+  _prefs.token ='';
+  _prefs.typeUSer = ''; 
+  _prefs.ultimaPagina='';
 
+}
 bool isNumeric( String s ) {
 
   if ( s.isEmpty ) return false;

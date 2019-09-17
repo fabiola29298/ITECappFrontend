@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:itec_app/src/bloc/provider.dart';
 import 'package:itec_app/src/providers/person_provider.dart';
+//import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:itec_app/src/utils/utils.dart';
 
 class LoginPage extends StatelessWidget {
-
+//final _prefs = new PreferenciasUsuario();
   final personProvider = new PersonProvider();
   @override
   Widget build(BuildContext context) {
@@ -167,7 +168,9 @@ class LoginPage extends StatelessWidget {
     if ( info['ok'] ) {
       Navigator.of(context).pop();
       Center(child: CircularProgressIndicator());
-       Navigator.pushReplacementNamed(context, 'menumaterial');
+      Navigator.pushReplacementNamed(context, 'menuPage');
+       
+      
     } else {
       Navigator.of(context).pop();
       mostrarAlerta( context, info['mensaje'] );
@@ -205,7 +208,7 @@ class LoginPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center, 
             
             children: <Widget>[
-              Icon( Icons.person_add, color: Colors.white, size: 100.0 ),
+              Icon( Icons.person, color: Colors.white, size: 100.0 ),
               SizedBox( height: 10.0, width: double.infinity ),
               Text('ITEC 2019', style: TextStyle( color: Colors.white, fontSize: 25.0 ))
               

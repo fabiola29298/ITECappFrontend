@@ -1,9 +1,13 @@
 {
     "nombreApp": "Rutas",
     "rutas": [{
-            "ruta": "scroll",
+            "ruta": "menuPage",
+            "icon": "home",
+            "texto": "Inicio"
+        }, {
+            "ruta": "registroActivityAdmin",
             "icon": "avatar",
-            "texto": "Scroll"
+            "texto": "Registro ActivityAdmin"
         },
         {
             "ruta": "login",
@@ -26,23 +30,18 @@
             "texto": "Mi Itinerario Personalizado"
         },
         {
-            "ruta": "expositoresUser",
-            "icon": "people",
-            "texto": "Expositores"
-        },
-        {
-            "ruta": "auspiciadorUser",
+            "ruta": "notificacionesUser",
             "icon": "announcement",
             "texto": "Auspiciadores"
         },
         {
-            "ruta": "mapaUser",
-            "icon": "avatar",
+            "ruta": "notificacionesUser",
+            "icon": "gps",
             "texto": "Mapa del Campus"
         },
         {
             "ruta": "notificacionesUser",
-            "icon": "avatar",
+            "icon": "announcement",
             "texto": "Notificaciones"
         },
 
@@ -56,12 +55,8 @@
             "ruta": "asistenciaUser",
             "icon": "avatar",
             "texto": "Cerrar sesion"
-        },
-        {
-            "ruta": "registroActivityAdmin",
-            "icon": "avatar",
-            "texto": "Registro ActivityAdmin"
         }
+
 
 
     ]

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:itec_app/src/models/activity_model.dart';
 import 'package:itec_app/src/models/schedule_model.dart';
-import 'package:itec_app/src/providers/schedule_provider.dart';
-import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart'; 
+import 'package:itec_app/src/providers/schedule_provider.dart'; 
 
 class ScheduleList extends StatelessWidget {
   final List<Schedule> schedule;
- final _prefs = new PreferenciasUsuario();
+ //final _prefs = new PreferenciasUsuario();
  final scheduleProvider = new ScheduleProvider(); 
   ScheduleList({@required this.schedule});
 
@@ -50,15 +49,7 @@ class ScheduleList extends StatelessWidget {
                 Icon ( Icons.calendar_today, color: Colors.blue ),
                 //new Image.asset(  'assets/img/menu-img.jpg'  , fit: BoxFit.cover,  width: 120.0,
                 //  ),
-                trailing: Column(
-                  children: <Widget>[
-                    Icon ( Icons.add, color: Colors.blue ),
-                    Text(
-                      'Agregar',
-                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15.0),
-                    ),
-                  ],
-                ),
+                 
                 title: Text(
                   activity.name,
                   style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
@@ -94,9 +85,9 @@ class ScheduleList extends StatelessWidget {
                      ]), 
                 onTap: () { /* react to the tile being tapped */ 
                       
-                      print('ID activity: ${activity.id}');
-                      print('ID person  : ${_prefs.idpref}');
-                      _register(context, activity.id);
+                     // print('ID activity: ${activity.id}');
+                     // print('ID person  : ${_prefs.idpref}');
+                     // _register(context, activity.id);
                 },dense: true,
 
               ),
@@ -108,12 +99,12 @@ class ScheduleList extends StatelessWidget {
       );
     }).toList();
   }
-   void _register(BuildContext context, String idActivity ) async { 
+/*   void _register(BuildContext context, String idActivity ) async { 
             
  
     
   }
-
+*/
  
   
   

@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 
 import 'package:itec_app/src/bloc/provider.dart'; 
-import 'package:itec_app/src/pages/pantalla_principal/scroll_page.dart';
 import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:itec_app/src/routes/routes.dart';
 
 void main() async {
   final prefs = new PreferenciasUsuario();
-    prefs.initPrefs();
+  await  prefs.initPrefs();
   runApp(MyApp());
 } 
  
 
 class MyApp extends StatelessWidget {
-    @override
+    final prefs = new PreferenciasUsuario();
+
+    @override 
   Widget build(BuildContext context) {
     const Color primaryColor = Color.fromRGBO(13,71,161,1.0);
    // const Color secondaryColor = Color.fromRGBO(249,168,37,1.0);
@@ -24,17 +25,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'ITEC APP',
         debugShowCheckedModeBanner: false,
-        initialRoute: 'scroll',
+        initialRoute:   prefs.ultimaPagina ,
          routes: getAplicationRouter(),
-         onGenerateRoute: (setting){
-           return MaterialPageRoute(builder: (context)=>ScrollPage());
-         },
-         theme: ThemeData(
-          //brightness: Brightness.dark,
+        // onGenerateRoute: (setting){ return MaterialPageRoute(builder: (context)=>HomePage());         },
+         theme: ThemeData( 
           accentColorBrightness: Brightness.dark,
-          primaryColor: Color.fromRGBO(13,71,161,1.0),
-          primaryColorLight: Color(0xFF1D3F57),
-          primaryColorDark: Color.fromRGBO(0,33,113, 1.0),
+          primaryColor: Color.fromRGBO(13,71,161,1.0), 
           buttonColor: Color.fromRGBO(13,71,161,1.0), 
           accentColor: Color.fromRGBO(249,168,37,1.0), 
           buttonTheme: ButtonThemeData( 

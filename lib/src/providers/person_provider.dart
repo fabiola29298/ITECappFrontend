@@ -27,6 +27,8 @@ class PersonProvider {
       
       _prefs.token = decodedResp['token'];
       _prefs.idpref = decodedResp['usuario']['_id'];
+      _prefs.typeUSer= decodedResp['usuario']['role'];
+      print('prefs: ${_prefs.token} - ${_prefs.idpref} - ${_prefs.typeUSer}');
 
       return { 'ok': true, 'token': decodedResp['token'] };
     } else {  

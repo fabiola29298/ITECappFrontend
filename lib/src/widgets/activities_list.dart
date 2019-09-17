@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
+
 import 'package:itec_app/src/models/activity_model.dart';
 import 'package:itec_app/src/providers/schedule_provider.dart';
 //import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
@@ -10,7 +12,7 @@ class ActivitiesList extends StatelessWidget {
  final scheduleProvider = new ScheduleProvider(); 
  //final scaffoldKey = GlobalKey<ScaffoldState>();
   ActivitiesList({@required this.activities});
-
+final _prefs = new PreferenciasUsuario();
   @override
   Widget build(BuildContext context) {
     //dimenciones del dispositivo
@@ -96,7 +98,14 @@ class ActivitiesList extends StatelessWidget {
                       
                      // print('ID activity: ${activity.id}');
                      // print('ID person  : ${_prefs.idpref}');
-                      _register(context, activity.id);
+                     if(_prefs.token ==''||_prefs.token ==null)
+                     {
+                       mostrarAlerta(context, 'Debe registrarse para agregarlo a su itinerario');
+                     }
+                     else{
+                       _register(context, activity.id);
+                     }
+                      
                      //mostrarSnackbar( 'Guardado');
                      //mostrarGuardado(context, 'Se guardo con exito. Lo puede ver en su itinerario');
                 },dense: true,

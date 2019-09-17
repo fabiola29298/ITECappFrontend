@@ -24,7 +24,7 @@ class PreferenciasUsuario {
     this._prefs = await SharedPreferences.getInstance();
   }
 
-  // GET y SET de la última página
+  // GET y SET de token
  
   get token {
     return _prefs.getString('token') ?? '';
@@ -34,10 +34,19 @@ class PreferenciasUsuario {
     _prefs.setString('token', value);
   }
   
+  // GET y SET de token
+ 
+  get typeUSer {
+    return _prefs.getString('typeUSer') ?? '';
+  }
+
+  set typeUSer( String value ) {
+    _prefs.setString('typeUSer', value);
+  }
 
   // GET y SET de la última página
   get ultimaPagina {
-    return _prefs.getString('ultimaPagina') ?? 'login';
+    return _prefs.getString('ultimaPagina') ?? 'menuPage';
   }
 
   set ultimaPagina( String value ) {

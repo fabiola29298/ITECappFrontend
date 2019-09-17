@@ -1,7 +1,7 @@
 {
     "nombreApp": "Rutas",
     "rutas": [{
-            "ruta": "menumaterial",
+            "ruta": "menuPage",
             "icon": "home",
             "texto": "Inicio"
         },
@@ -16,17 +16,17 @@
             "texto": "Mi Itinerario Personalizado"
         },
         {
-            "ruta": "expositoresUser",
+            "ruta": "notificacionesUser",
             "icon": "people",
             "texto": "Expositores"
         },
         {
-            "ruta": "auspiciadorUser",
+            "ruta": "notificacionesUser",
             "icon": "announcement",
             "texto": "Auspiciadores"
         },
         {
-            "ruta": "mapaUser",
+            "ruta": "notificacionesUser",
             "icon": "gps",
             "texto": "Mapa del Campus"
         },
@@ -39,7 +39,7 @@
         {
             "ruta": "asistenciaUser",
             "icon": "avatar",
-            "texto": "Asistencia"
+            "texto": "Lista de Asistencia"
         },
 
         {

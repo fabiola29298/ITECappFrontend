@@ -375,7 +375,7 @@ class _SignInPageState extends State<SignInPage> {
     mostrarCargando( context,'Guardando su registro'  );
     if ( info['ok'] ) {
       Navigator.of(context).pop();
-       Navigator.pushReplacementNamed(context, 'menumaterial');
+       Navigator.pushReplacementNamed(context, 'menuPage');
     } else {
       Navigator.of(context).pop();
       mostrarAlerta( context, info['mensaje'] );
@@ -410,7 +410,7 @@ class _SignInPageState extends State<SignInPage> {
           padding: EdgeInsets.only(top: 80.0),
           child: Column(
             children: <Widget>[
-              Icon( Icons.person, color: Colors.white, size: 100.0 ),
+              Icon( Icons.person_add, color: Colors.white, size: 100.0 ),
               SizedBox( height: 10.0, width: double.infinity ),
               Text('ITEC 2019', style: TextStyle( color: Colors.white, fontSize: 25.0 ))
             ],

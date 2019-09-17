@@ -1,55 +1,127 @@
 import 'package:flutter/material.dart';
-
-import 'package:itec_app/src/providers/menu_provider.dart'; 
-import 'package:itec_app/src/utils/icono_string_util.dart'; 
+import 'package:flutter/material.dart' as prefix0;
+import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart'; 
 class HomePage extends StatelessWidget {
+  static final String routeName = 'home';
+  final prefs = new PreferenciasUsuario();
   @override
-  Widget build(BuildContext context) {
-     return Scaffold(
-       appBar: AppBar(
-         title:Text('ITEC App'),
-       ),
-       body: _lista(),
-     );
-  }
-  Widget _lista() {
  
-    return FutureBuilder(
-      future: menuProvider.cargarData(),
-      initialData: [],
-      builder: ( context, AsyncSnapshot<List<dynamic>> snapshot ){
-        return ListView(
-          children: _listaItems( snapshot.data, context ),
-        );
-      },
+  Widget build(BuildContext context) {
+   prefs.ultimaPagina = HomePage.routeName;
+      return Scaffold(
+      body: PageView(
+        scrollDirection: Axis.vertical,
+        children: <Widget>[
+          _pagina1(),
+          _pagina2(context)
+        ],
+      ),
+    );
+    
+  }
+
+
+
+   Widget _pagina1(){
+    return Stack(
+      children: <Widget>[
+        _colorFondo(),
+        _imagenFondo(),
+        _textos()
+      ],
     );
   }
+  Widget _pagina2(BuildContext context){
+    return Container(
+      width:  double.infinity,
+      height: double.infinity,
+      color:Color.fromRGBO(24, 64, 87, 1.0),
+       
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
 
+            RaisedButton(
+              shape: StadiumBorder(),
+              color: Color(0xFF1F396E),
+              textColor: Colors.white,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+                child: Text('Iniciar Sesion', style: TextStyle(fontSize: 20.0),),
+              ),
+              onPressed: (){
+                Navigator.pushNamed(context, 'login' );
+              },
+            ),
+            SizedBox(height: 10.0,),
 
-  List<Widget> _listaItems( List<dynamic> data, BuildContext context ) {
+            RaisedButton(
+              
+              shape: StadiumBorder(),
+              color: Color(0xFF1F396E),
+              textColor: Colors.white,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+                
+                child: Text('Registrarse    ', style: TextStyle(fontSize: 20.0),),
+              ),
+              onPressed: (){
+                Navigator.pushNamed(context, 'signin' );
+              },
+            ),
+            SizedBox(height: 10.0,),
 
-    final List<Widget> opciones = [];
- 
+            RaisedButton(
+              shape: StadiumBorder(),
+              color: Color(0xFF1F396E),
+              textColor: Colors.white,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+                child: Text('   Invitado    ', style: TextStyle(fontSize: 20.0),),
+              ),
+              onPressed: (){ 
+                Navigator.pushReplacementNamed(context, 'menuPage' );
+              },
+            ),
+             
+          ],
+        )
+        
+      
+    );
+  } 
+  Widget _colorFondo(){
+    return Container(
+      width:  double.infinity,
+      height: double.infinity,
+      color: Color.fromRGBO(24, 64, 87, 1.0)
+    );
+  }
+  Widget _imagenFondo(){
+    return Container(
+      width:  double.infinity,
+      height: double.infinity, 
+      child: Image(image: AssetImage('assets/img/fondopantalla.png'),
+        fit:BoxFit.cover),
 
-    data.forEach( (opt) {
-
-      final widgetTemp = ListTile(
-        title: Text( opt['texto'] ),
-        leading:  getIcon( opt['icon'] ) ,
-        trailing: Icon ( Icons.keyboard_arrow_right, color: Colors.blue ),
-        onTap: () {
-
-          Navigator.pushNamed(context, opt['ruta'] ); 
-        },
-      );
-
-      opciones..add( widgetTemp )
-              ..add( Divider() );
-
-    });
-
-    return opciones;
-
+    );
+  }
+  Widget _textos(){
+    //final estilo = TextStyle(color: Colors.white, fontSize: 56.0);
+    return SafeArea(
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 20.0),
+              //Text('ITEC 2019', style: estilo),
+              //Text('UCB', style: estilo),
+              Expanded(
+                child: Container(),
+              ),
+              Icon(Icons.keyboard_arrow_down, size: 70.0, color: Colors.white),
+            ],
+      ),
+    );
   }
 }
 

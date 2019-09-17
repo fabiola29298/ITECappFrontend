@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+
  
 import 'package:itec_app/src/providers/activities_provider.dart';
 import 'package:itec_app/src/widgets/activities_list.dart';
 import 'package:itec_app/src/widgets/menu_widget.dart'; 
 class ProgramaPage extends StatelessWidget {
-
-   
+ 
   final activitiesProvider = new ActivityProvider();
   @override
   Widget build(BuildContext context) {

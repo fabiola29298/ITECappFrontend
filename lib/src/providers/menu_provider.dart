@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart' show rootBundle;
 
 import 'dart:convert';
-
+import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
 
 class _MenuProvider {
 
@@ -12,9 +12,14 @@ class _MenuProvider {
   }
 
   Future<List<dynamic>> cargarData() async {
-
-    final resp = await rootBundle.loadString('data/menu_routes.json');
+  final _prefs = new PreferenciasUsuario(); 
+  String user='';
     
+    if(_prefs.typeUSer=='ADMIN_ROLE')
+      { user='data/menu_routes_dev.json'; }
+    else{ user='data/menu_routes.json';  }
+    
+    final resp = await rootBundle.loadString(user);
     Map dataMap = json.decode( resp );
     opciones = dataMap['rutas'];
     

@@ -1,10 +1,28 @@
-import 'package:flutter/material.dart'; 
-import 'dart:ui'; 
-class MenuMaterialDesignPage extends StatelessWidget {
-   
-  @override
+import 'package:flutter/material.dart';
+
+import 'package:itec_app/src/providers/menu_provider.dart'; 
+import 'package:itec_app/src/utils/icono_string_util.dart';
+import 'package:itec_app/src/utils/utils.dart'; 
+
+import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart'; 
+class MenuPage extends StatelessWidget {
+  static final String routeName = 'MenuPage';
+  final prefs = new PreferenciasUsuario();
+  @override 
   Widget build(BuildContext context) {
-    return Scaffold(
+    prefs.ultimaPagina = MenuPage.routeName;
+    
+    if (prefs.typeUSer.toString()=="ADMIN_ROLE"){
+        return Scaffold(
+       appBar: AppBar(
+         title:Text('ITEC App'),
+       ),
+       body: _lista(),
+     );
+      }
+       
+      else {
+        return Scaffold(
       body: Stack(
         children: <Widget>[
           _fondoApp(),
@@ -20,6 +38,50 @@ class MenuMaterialDesignPage extends StatelessWidget {
       ),
       
     );
+      }
+
+     
+  }
+  Widget _lista() {
+ 
+    return FutureBuilder(
+      future: menuProvider.cargarData(),
+      initialData: [],
+      builder: ( context, AsyncSnapshot<List<dynamic>> snapshot ){
+        return ListView(
+          children: _listaItems( snapshot.data, context ),
+        );
+      },
+    );
+  }
+
+
+  List<Widget> _listaItems( List<dynamic> data, BuildContext context ) {
+
+    final List<Widget> opciones = [];
+ 
+
+    data.forEach( (opt) {
+
+      final widgetTemp = ListTile(
+        title: Text( opt['texto'] ),
+        leading:  getIcon( opt['icon'] ) ,
+        trailing: Icon ( Icons.keyboard_arrow_right, color: Colors.blue ),
+        onTap: () {
+          if(opt['ruta']=='scroll'){
+            cerrarSesion();
+          }
+          Navigator.pushNamed(context, opt['ruta'], arguments: opt['texto'] ); 
+        },
+      );
+
+      opciones..add( widgetTemp )
+              ..add( Divider() );
+
+    });
+
+    return opciones;
+
   }
 
   Widget _fondoApp(){
@@ -72,34 +134,34 @@ class MenuMaterialDesignPage extends StatelessWidget {
       children: [
         TableRow(
           children:[
-            _crearBotonRedondeado(context,Colors.blueAccent, Icons.calendar_today, 'Programa de actividades','programaUser'), 
-            _crearBotonRedondeado(context,Colors.blueAccent, Icons.schedule, 'Mi Itinerario Personalizado','itinerarioUser'), 
+            _crearBotonRedondeado(context, Icons.calendar_today, 'Programa de actividades','programaUser'), 
+            _crearBotonRedondeado(context, Icons.schedule, 'Mi Itinerario Personalizado','itinerarioUser'), 
           ],
           
          ),
          TableRow(
           children:[
-           _crearBotonRedondeado(context,Colors.blueAccent, Icons.people, 'Expositores','expositoresUser'), 
-            _crearBotonRedondeado(context,Colors.blueAccent, Icons.announcement, 'Auspiciadores','auspiciadorUser'), 
+           _crearBotonRedondeado(context, Icons.people, 'Expositores','notificacionesUser'), 
+            _crearBotonRedondeado(context, Icons.announcement, 'Auspiciadores','notificacionesUser'), 
           ]
          ),
          TableRow(
           children:[
-            _crearBotonRedondeado(context,Colors.blueAccent, Icons.border_all, '"Mapa del Campus','mapaUser'), 
-            _crearBotonRedondeado(context,Colors.blueAccent, Icons.dashboard, 'Notificaciones','notificacionesUser'), 
+            _crearBotonRedondeado(context, Icons.border_all, 'Mapa del Campus','notificacionesUser'), 
+            _crearBotonRedondeado(context, Icons.dashboard, 'Notificaciones','notificacionesUser'), 
           ]
          ),
          TableRow(
           children:[
-            _crearBotonRedondeado(context,Colors.blueAccent, Icons.border_all, 'Asistencia','asistenciaUser'),  
-           _crearBotonRedondeado(context,Colors.blueAccent, Icons.border_all, 'Asistencia','asistenciaUser'),  
+            _crearBotonRedondeado(context, Icons.border_all, 'Asistencia','asistenciaUser'),  
+           _crearBotonRedondeado(context, Icons.account_circle, 'Cerrar sesion / Salir','scroll'),  
           ]
          ),
       ],
     );
   }
 
-  Widget  _crearBotonRedondeado(BuildContext context, Color color, IconData icono, String texto, String url){
+  Widget  _crearBotonRedondeado(BuildContext context,  IconData icono, String texto, String url){
 
 
 
@@ -116,7 +178,8 @@ class MenuMaterialDesignPage extends StatelessWidget {
           child:   RaisedButton( 
                 color: Color.fromRGBO(31, 57, 110, 0.7),
                 onPressed: (){
-                    Navigator.pushNamed(context,   url   ); 
+                  if(url=='scroll'){cerrarSesion();}
+                    Navigator.pushNamed(context,url,arguments:texto); 
                 },
                 child: Column(
                   children: <Widget>[
@@ -131,15 +194,15 @@ class MenuMaterialDesignPage extends StatelessWidget {
                   ],
                 ),
               ),
-              
-            
-             
- 
-          
- 
         ),
         
           
     );
   }
+
+     
+  
 }
+
+  
+  
