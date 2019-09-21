@@ -53,6 +53,23 @@ Future <List<Person>> getSpeakers() async{
     return activitiesData.items;
   }
 
+Future <List<Person>> getStaff() async{
+    final url = Uri.https(_url, 'person/buscar/speaker',{
+      'token' : _prefs.token
+    } );
+ 
+    final resp = await http.get(url);
+    final decodedData = json.decode(resp.body);
+
+    if ( decodedData == null ) return [];
+    if ( decodedData['error'] != null ) return []; //EXTRA CUANDO EL TOKEN SE VENCE
+
+    final activitiesData = new People.fromJsonList(decodedData['person']);
+    //final dt = activitiesData.items;
+    print('decode:{$decodedData}');
+    return activitiesData.items;
+  }
+
   Future<Map<String, dynamic>> nuevoUsuario(String name, String lastname, String email, String password, String genero, String carrera, String tipoInscripcion ) async {
 
     Map<String, dynamic>  authData = {'email': email,'password' : password,'name':name,'last_name':lastname, 'gender': genero, 'career': carrera, 'type_inscription': tipoInscripcion};

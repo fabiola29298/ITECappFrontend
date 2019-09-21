@@ -4,10 +4,29 @@
 
 import 'dart:convert';
 
-Notification clientFromJson(String str) => Notification.fromJson(json.decode(str));
 
-String clientToJson(Notification data) => json.encode(data.toJson());
+Notification scheduleFromJson(String str) => Notification.fromJson(json.decode(str));
 
+String scheduleToJson(Notification data) => json.encode(data.toJson());
+
+class Notifications{
+  //contenedor de todos los items
+  //MAPEO
+  List<Notification> items = new List();
+
+  Notifications.fromJsonList( List<dynamic> jsonList){
+
+    if (jsonList == null) return;
+
+    jsonList.forEach( (item) {
+      final notificationItem = Notification.fromJsonMap(item); 
+      items.add(notificationItem);
+    });
+  }
+
+
+  // recibir el mapa de todo
+}
 class Notification {
     bool status;
     String id;
@@ -28,7 +47,16 @@ class Notification {
         this.dateTime,
         this.v,
     });
-
+    Notification.fromJsonMap(Map<String, dynamic> json) {
+        status        = json["status"];
+        id            = json["_id"]; 
+        name          = json["name"];
+        description   = json["description"];
+        urlImage      = json["urlImage"];
+        urlExtra      = json["urlExtra"]; 
+        dateTime      = json["dateTime"];
+        v             = json["__v"];
+    }
     factory Notification.fromJson(Map<String, dynamic> json) => Notification(
         status: json["status"],
         id: json["_id"],

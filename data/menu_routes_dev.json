@@ -7,18 +7,37 @@
         }, {
             "ruta": "registroActivityAdmin",
             "icon": "avatar",
-            "texto": "Registro ActivityAdmin"
+            "texto": "Crear nueva actividad"
+        },
+
+        {
+            "ruta": "registroControlAdmin",
+            "icon": "avatar",
+            "texto": "Crear nueva lista de control"
         },
         {
-            "ruta": "login",
+            "ruta": "registroNotificacionesAdmin",
             "icon": "avatar",
-            "texto": "Iniciar sesión"
+            "texto": "Crear nueva notificacion"
+        },
+
+        {
+            "ruta": "listaParticipantes",
+            "icon": "avatar",
+            "texto": "Lista de participantes"
         },
         {
-            "ruta": "signin",
+            "ruta": "listaAsistenciaAdmin",
             "icon": "avatar",
-            "texto": "Registrarse"
+            "texto": "Lista de Asistentes por actividad"
         },
+        {
+            "ruta": "listaControlAdmin",
+            "icon": "avatar",
+            "texto": "Lista de Control de asistencia"
+        },
+
+
         {
             "ruta": "programaUser",
             "icon": "calendar_today",

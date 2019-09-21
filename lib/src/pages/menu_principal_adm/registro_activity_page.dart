@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:itec_app/src/bloc/provider.dart';
-import 'package:itec_app/src/providers/activities_provider.dart';  
+import 'package:itec_app/src/providers/activities_provider.dart';
+import 'package:itec_app/src/providers/person_provider.dart';  
 import 'package:itec_app/src/utils/utils.dart'; 
 class RegistroActivityPage extends StatefulWidget {
  
@@ -14,6 +15,7 @@ class _RegistroActivityPageState extends State<RegistroActivityPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   
   final activityProvider = new ActivityProvider(); 
+  final personProvider = new PersonProvider();
   @override
   Widget build(BuildContext context) {
 
@@ -180,7 +182,9 @@ class _RegistroActivityPageState extends State<RegistroActivityPage> {
     ),);},);
   }
    Widget _crearSpeaker(ActivityBloc actividadBloc){
-     return Container();
+    return Container();
+
+
   }
 
   Widget _crearBoton(ActivityBloc bloc) {
@@ -224,7 +228,7 @@ class _RegistroActivityPageState extends State<RegistroActivityPage> {
 
       if ( info['ok'] ) {
         Navigator.of(context).pop();
-        Navigator.pushReplacementNamed(context, 'menumaterial');
+        Navigator.pushReplacementNamed(context, 'menuPage');
       } else {
         Navigator.of(context).pop();
         mostrarAlerta( context, info['mensaje'] );
