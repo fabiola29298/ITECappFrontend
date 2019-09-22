@@ -6,9 +6,26 @@
 
 import 'dart:convert';
 
-Assist clientFromJson(String str) => Assist.fromJson(json.decode(str));
+Assist assistFromJson(String str) => Assist.fromJson(json.decode(str));
 
-String clientToJson(Assist data) => json.encode(data.toJson());
+String assistToJson(Assist data) => json.encode(data.toJson());
+
+class Assists{
+  //contenedor de todos los items
+  //MAPEO
+  List<Assist> items = new List();
+
+  Assists.fromJsonList( List<dynamic> jsonList){
+
+    if (jsonList == null) return;
+
+    jsonList.forEach( (item) {
+      final activity = Assist.fromJsonMap(item); 
+      items.add(activity);
+    });
+  }
+
+}
 
 class Assist {
     String feedback;
@@ -48,4 +65,15 @@ class Assist {
         "date_time": dateTime.toIso8601String(),
         "__v": v,
     };
+
+       Assist.fromJsonMap(Map<String,dynamic> json){
+        feedback     = json['feedback'];
+        status       = json['status'];
+        id           = json['_id']; 
+        assistcontrol    = json["assistcontrol"];
+        person       = json['person'];   
+        dateTime = json["date_time"];
+        v            = json['v']; 
+    
+  }
 }

@@ -77,7 +77,60 @@ class ActivityProvider{
     return 1;
   } 
 
+  //Mostrar - GET / Movie/now_playing
 
+  Future <List<Activity>> buscarTipo(String tipo) async{
+    final url = Uri.https(_url, 'activity/buscar/tipo/$tipo',{
+      'token' : _prefs.token
+    } );
+ 
+    final resp = await http.get(url);
+    final decodedData = json.decode(resp.body);
 
+    if ( decodedData == null ) return [];
+    if ( decodedData['error'] != null ) return []; //EXTRA CUANDO EL TOKEN SE VENCE
 
+    final activitiesData = new Activities.fromJsonList(decodedData['activity']);
+    //final dt = activitiesData.items;
+    print('decode:{$decodedData}');
+    return activitiesData.items;
+  }
+
+  //Mostrar - GET / Movie/now_playing
+
+  Future <List<Activity>> buscarNombre(String nombre) async{
+    final url = Uri.https(_url, 'activity/buscar/name/$nombre',{
+      'token' : _prefs.token
+    } );
+ 
+    final resp = await http.get(url);
+    final decodedData = json.decode(resp.body);
+
+    if ( decodedData == null ) return [];
+    if ( decodedData['error'] != null ) return []; //EXTRA CUANDO EL TOKEN SE VENCE
+
+    final activitiesData = new Activities.fromJsonList(decodedData['activity']);
+    //final dt = activitiesData.items;
+    print('decode:{$decodedData}');
+    return activitiesData.items;
+  }
+
+    //Mostrar - GET / Movie/now_playing
+
+  Future <List<Activity>> buscarId(String id) async{
+    final url = Uri.https(_url, 'activity/buscar/id/$id',{
+      'token' : _prefs.token
+    } );
+ 
+    final resp = await http.get(url);
+    final decodedData = json.decode(resp.body);
+
+    if ( decodedData == null ) return [];
+    if ( decodedData['error'] != null ) return []; //EXTRA CUANDO EL TOKEN SE VENCE
+
+    final activitiesData = new Activities.fromJsonList(decodedData['activity']);
+    //final dt = activitiesData.items;
+    print('decode:{$decodedData}');
+    return activitiesData.items;
+  }
 }

@@ -51,6 +51,14 @@ class ScheduleProvider {
     }
   }
 
+Future<int> borrarProducto( String id ) async { 
 
+    final url  = '$_url/schedule/$id';
+    final resp = await http.delete(url);
+
+    print( resp.body );
+
+    return 1;
+  } 
 
 }

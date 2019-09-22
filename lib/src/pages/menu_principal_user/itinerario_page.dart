@@ -65,7 +65,7 @@ import 'package:itec_app/src/widgets/schedule_list.dart';
         children: <Widget>[
         Container(
           padding: EdgeInsets.only(left:20.0),
-          child: Text('Mi itinerario personalizado \nDesliza para eliminar',
+          child: Text('Mi itinerario personalizado \nDesliza a la derecha para eliminar',
                 style: TextStyle(color: Colors.black, fontSize: 15.0),
                 )),
           SizedBox(height: 5.0),

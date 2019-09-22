@@ -38,63 +38,74 @@ class ScheduleList extends StatelessWidget {
             )
           ]),
              
-        child:  Column(
-            
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[ 
-                ListTile(
-                 
-               // contentPadding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
-                leading: 
-                Icon ( Icons.calendar_today, color: Colors.blue ),
-                //new Image.asset(  'assets/img/menu-img.jpg'  , fit: BoxFit.cover,  width: 120.0,
-                //  ),
-                 
-                title: Text(
-                  activity.name,
-                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
-                ),
-                subtitle: new Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  
-                  children: <Widget>[
-                    SizedBox(height: 5.0),
-                    Text(
-                      'Fecha: ${activity.date}    \nHora: ${activity.startTime}  ',
-                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15.0),
-                    ),
-                    SizedBox(height: 5.0),
-                    Text(
-                      'Tipo: ${activity.type}',
-                      style: new TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, )
-                    ),
-                    Text(
-                      'Expositor: Pesona Prueba',
-                      style: new TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, )
-                    ),
-                    Text(
-                      'Lugar: Aula ${activity.classroom} ',
-                      style: new TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, )
-                    ), 
-                    SizedBox(height: 5.0),
-                    Text(
-                      'Descripcion: ${activity.description} ',
-                      style: new TextStyle(fontSize: 10.0, fontWeight: FontWeight.normal, )
-                    ),
-                     ]), 
-                onTap: () { /* react to the tile being tapped */ 
-                      
-                     // print('ID activity: ${activity.id}');
-                     // print('ID person  : ${_prefs.idpref}');
-                     // _register(context, activity.id);
-                },dense: true,
-
+        child:  Dismissible(
+              
+              key: UniqueKey(),
+              background: Container(
+                color: Colors.red,
               ),
-              Divider()
-               
-            ],
-          ),
+              onDismissed: ( direccion ){
+                scheduleProvider.borrarProducto(schedule.id);
+              },
+              
+              child: Column(
+              
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[ 
+                  ListTile(
+                   
+                 // contentPadding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+                  leading: 
+                  Icon ( Icons.calendar_today, color: Colors.blue ),
+                  //new Image.asset(  'assets/img/menu-img.jpg'  , fit: BoxFit.cover,  width: 120.0,
+                  //  ),
+                   
+                  title: Text(
+                    activity.name,
+                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
+                  ),
+                  subtitle: new Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    
+                    children: <Widget>[
+                      SizedBox(height: 5.0),
+                      Text(
+                        'Fecha: ${activity.date}    \nHora: ${activity.startTime}  ',
+                        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15.0),
+                      ),
+                      SizedBox(height: 5.0),
+                      Text(
+                        'Tipo: ${activity.type}',
+                        style: new TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, )
+                      ),
+                      Text(
+                        'Expositor: Pesona Prueba',
+                        style: new TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, )
+                      ),
+                      Text(
+                        'Lugar: Aula ${activity.classroom} ',
+                        style: new TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, )
+                      ), 
+                      SizedBox(height: 5.0),
+                      Text(
+                        'Descripcion: ${activity.description} ',
+                        style: new TextStyle(fontSize: 10.0, fontWeight: FontWeight.normal, )
+                      ),
+                       ]), 
+                  onTap: () { /* react to the tile being tapped */ 
+                        
+                       // print('ID activity: ${activity.id}');
+                       // print('ID person  : ${_prefs.idpref}');
+                       // _register(context, activity.id);
+                  },dense: true,
+
+                ),
+                Divider()
+                 
+              ],
+            ),
+        ),
          
       );
     }).toList();
