@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart'; 
-import 'package:itec_app/src/models/notification_model.dart' as prefix0;
-import 'package:itec_app/src/providers/notifcation_provider.dart'; 
+import 'package:flutter/material.dart';  
+import 'dart:io';
+import 'package:itec_app/src/models/person_model.dart';
+import 'package:itec_app/src/providers/control_provider.dart'; 
 
-class NotificationList extends StatelessWidget {
-  final List<prefix0.Notification> notifications;
- //final _prefs = new PreferenciasUsuario();
- final notificationProvider = new NotificationProvider(); 
-  NotificationList({@required this.notifications});
+class ParticipantsList extends StatelessWidget {
+  final List<Person> people; 
+  File foto;
+ final controlProvider = new ControlProvider(); 
+  ParticipantsList({@required this.people});
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +16,12 @@ class NotificationList extends StatelessWidget {
 
     return  Column(
            
-           children: _notificationCard(context),
+           children: _peopleCard(context),
          ) ;
   }
 
-  List<Widget> _notificationCard (BuildContext context){
-    return notifications.map((notificationData){  
+  List<Widget> _peopleCard (BuildContext context){
+    return people.map((person){
       return Container(
         margin: EdgeInsets.all( 10.0),
         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20.0),
@@ -40,16 +41,17 @@ class NotificationList extends StatelessWidget {
             
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[ 
+              SizedBox(height: 10.0,),
                 ListTile(
                  
                // contentPadding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
-                leading:   
-                Icon ( Icons.notification_important, color: Colors.blue ),
+                leading: 
+                Icon ( Icons.person, color: Colors.blue ),
                 //new Image.asset(  'assets/img/menu-img.jpg'  , fit: BoxFit.cover,  width: 120.0,
                 //  ),
-                 
+                
                 title: Text(
-                  notificationData.name,
+                  '${person.name} ${person.lastName}',
                   style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
                 ),
                 subtitle: new Column(
@@ -59,23 +61,18 @@ class NotificationList extends StatelessWidget {
                   children: <Widget>[
                     SizedBox(height: 5.0),
                     Text(
-                      'Descripcion: ${notificationData.description}  ',
+                      'Correo: ${person.email}       ',
                       style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15.0),
                     ),
+                    SizedBox(height: 5.0),  
                     SizedBox(height: 5.0),
                     Text(
-                      'Fecha: ${notificationData.dateTime}',
-                      style: new TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, )
+                      'Tipo de Inscripciones: ${person.typeInscription} \n Tipo de usuario:${person.role}',
+                      style: new TextStyle(fontSize: 10.0, fontWeight: FontWeight.normal, )
                     ),
-                     
-                    SizedBox(height: 5.0),
-                     
                      ]), 
                 onTap: () { /* react to the tile being tapped */ 
-                      
-                     // print('ID notificationData: ${notificationData.id}');
-                     // print('ID person  : ${_prefs.idpref}');
-                     // _register(context, notificationData.id);
+                       
                 },dense: true,
 
               ),
@@ -86,16 +83,6 @@ class NotificationList extends StatelessWidget {
          
       );
     }).toList();
-  }
-/*   void _register(BuildContext context, String idActivity ) async { 
-            
- 
-    
-  }
-*/
- 
-  
-  
-
-  
+  } 
+   
 }

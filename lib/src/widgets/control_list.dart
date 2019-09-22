@@ -1,12 +1,14 @@
-import 'package:flutter/material.dart'; 
-import 'package:itec_app/src/models/notification_model.dart' as prefix0;
-import 'package:itec_app/src/providers/notifcation_provider.dart'; 
+import 'package:flutter/material.dart';
+import 'package:itec_app/src/models/activity_model.dart';
+import 'package:itec_app/src/models/assist_control_model.dart';
+import 'package:itec_app/src/models/person_model.dart'; 
+import 'package:itec_app/src/providers/control_provider.dart'; 
 
-class NotificationList extends StatelessWidget {
-  final List<prefix0.Notification> notifications;
+class ControlList extends StatelessWidget {
+  final List<Control> control;
  //final _prefs = new PreferenciasUsuario();
- final notificationProvider = new NotificationProvider(); 
-  NotificationList({@required this.notifications});
+ final controlProvider = new ControlProvider(); 
+  ControlList({@required this.control});
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +17,15 @@ class NotificationList extends StatelessWidget {
 
     return  Column(
            
-           children: _notificationCard(context),
+           children: _controlCard(context),
          ) ;
   }
 
-  List<Widget> _notificationCard (BuildContext context){
-    return notifications.map((notificationData){  
+  List<Widget> _controlCard (BuildContext context){
+    return control.map((control){ 
+      Activity activity = Activity.fromJsonMap(control.activity);
+      Person   person = Person.fromJsonMap(control.person);
+
       return Container(
         margin: EdgeInsets.all( 10.0),
         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20.0),
@@ -43,13 +48,13 @@ class NotificationList extends StatelessWidget {
                 ListTile(
                  
                // contentPadding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
-                leading:   
-                Icon ( Icons.notification_important, color: Colors.blue ),
+                leading: 
+                Icon ( Icons.indeterminate_check_box, color: Colors.blue ),
                 //new Image.asset(  'assets/img/menu-img.jpg'  , fit: BoxFit.cover,  width: 120.0,
                 //  ),
                  
                 title: Text(
-                  notificationData.name,
+                  '${activity.name}', //nombre de actividad
                   style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
                 ),
                 subtitle: new Column(
@@ -59,23 +64,30 @@ class NotificationList extends StatelessWidget {
                   children: <Widget>[
                     SizedBox(height: 5.0),
                     Text(
-                      'Descripcion: ${notificationData.description}  ',
+                      'Fecha: ${activity.date}    \nHora: ${activity.startTime}  ',
                       style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15.0),
                     ),
                     SizedBox(height: 5.0),
                     Text(
-                      'Fecha: ${notificationData.dateTime}',
+                      'Tipo: ${activity.type}',
                       style: new TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, )
                     ),
-                     
+                    Text(
+                      'Lugar: Aula ${activity.classroom} ',
+                      style: new TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, )
+                    ), 
                     SizedBox(height: 5.0),
-                     
+                    
+                    Text(
+                      'Encargado: ${person.name} ${person.lastName}',
+                      style: new TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, )
+                    ),
                      ]), 
                 onTap: () { /* react to the tile being tapped */ 
                       
-                     // print('ID notificationData: ${notificationData.id}');
+                     // print('ID activity: ${activity.id}');
                      // print('ID person  : ${_prefs.idpref}');
-                     // _register(context, notificationData.id);
+                     // _register(context, activity.id);
                 },dense: true,
 
               ),

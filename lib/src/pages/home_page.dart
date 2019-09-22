@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as prefix0;
+import 'package:flutter/material.dart'; 
 import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart'; 
 class HomePage extends StatelessWidget {
   static final String routeName = 'home';

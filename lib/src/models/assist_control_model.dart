@@ -29,8 +29,8 @@ class Controles{
 class Control {
     bool status;
     String id;
-    String activity;
-    String person;
+    Map<String, dynamic> activity;
+    Map<String, dynamic> person;
     String nameStaff;
     String nameActivity;
     int v;

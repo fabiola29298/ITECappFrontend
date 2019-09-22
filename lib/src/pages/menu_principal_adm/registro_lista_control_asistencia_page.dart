@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:async';
-import 'dart:convert';
+import 'package:flutter/material.dart'; 
  
 import 'package:itec_app/src/models/activity_model.dart';
 import 'package:itec_app/src/models/person_model.dart';
@@ -24,8 +21,8 @@ class _RegistroListaControlAsistenciaPageState extends State<RegistroListaContro
   final personProvider = new PersonProvider();
   final controlProvider = new ControlProvider();
 
-  String _idStaff=null , _nameStaff=null;
-  String _idActivity=null, _nameActivity=null;
+  String _idStaff , _nameStaff;
+  String _idActivity, _nameActivity;
   List data = List(); //edited line
  
 
@@ -66,7 +63,7 @@ class _RegistroListaControlAsistenciaPageState extends State<RegistroListaContro
           padding: EdgeInsets.only(left:20.0),
           child: 
           FutureBuilder(
-           future: personProvider.getSpeakers(), 
+           future: personProvider.getStaff(), 
            builder: (BuildContext context, AsyncSnapshot<List> snapshot) { 
              if(snapshot.hasData){
                return _crearDropBoxStaff(snapshot.data);

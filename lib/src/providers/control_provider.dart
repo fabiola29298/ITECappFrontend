@@ -32,9 +32,9 @@ class ControlProvider {
 
 
   Future
-  <Map<String, dynamic>> nuevoControl(String activity, String person, String name_staff, String name_activity ) async {
+  <Map<String, dynamic>> nuevoControl(String activity, String person, String nameStaff, String nameActivity ) async {
 
-    Map<String, dynamic>  authData = {'activity': activity,'person' : person,'name_staff': name_staff,'name_activity' : name_activity};
+    Map<String, dynamic>  authData = {'activity': activity,'person' : person,'name_staff': nameStaff ,'name_activity' : nameActivity};
     final url = '$_url2/control';
     final resp = await http.post(url,body:  authData); 
 
