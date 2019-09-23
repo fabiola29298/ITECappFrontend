@@ -67,11 +67,11 @@
         {
             "ruta": "asistenciaUser",
             "icon": "avatar",
-            "texto": "Asistencia"
+            "texto": "Lista de Asistencia"
         },
 
         {
-            "ruta": "asistenciaUser",
+            "ruta": "scroll",
             "icon": "avatar",
             "texto": "Cerrar sesion"
         }

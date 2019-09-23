@@ -26,7 +26,7 @@ class Activities{
 }
 class Activity {
   String id;
-  String person;
+  Map<String, dynamic> person;
   bool status;
   String name;
   String type;

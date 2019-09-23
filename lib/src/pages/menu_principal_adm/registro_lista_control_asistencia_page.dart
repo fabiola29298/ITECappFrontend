@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
  
 import 'package:itec_app/src/models/activity_model.dart';
 import 'package:itec_app/src/models/person_model.dart';
+import 'package:itec_app/src/pages/menu_principal_adm/lista_control_asistencia_page.dart';
 import 'package:itec_app/src/providers/activities_provider.dart';
 import 'package:itec_app/src/providers/control_provider.dart';
 import 'package:itec_app/src/providers/person_provider.dart';  
-import 'package:itec_app/src/utils/utils.dart'; 
+import 'package:itec_app/src/utils/utils.dart';
+import 'package:itec_app/src/widgets/control_list.dart'; 
 
 
 class RegistroListaControlAsistenciaPage extends StatefulWidget {
@@ -45,6 +47,12 @@ class _RegistroListaControlAsistenciaPageState extends State<RegistroListaContro
                     _crearHorario(context),  
                     SizedBox(height: 20.0),
                     _crearBoton(context),
+                    SizedBox(height: 20.0),
+                                                            
+                    SizedBox( height: 10.0),
+                    _obtenerControlCard(context),
+                                                                             
+                    
                   ],
                 ),
               ),
@@ -52,7 +60,31 @@ class _RegistroListaControlAsistenciaPageState extends State<RegistroListaContro
           ),
     );
   }
- 
+ Widget _obtenerControlCard(BuildContext context){
+    return Container(
+      width: double.infinity,
+      child: Column( 
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+        Container(
+          padding: EdgeInsets.only(left:20.0),
+          child: Text('Listas de control de asistencias de participantes ',
+                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
+                )),
+          SizedBox(height: 5.0),
+          FutureBuilder(
+           future: controlProvider.getControls(), 
+           builder: (BuildContext context, AsyncSnapshot<List> snapshot) { 
+             if(snapshot.hasData){
+               return ControlList(control: snapshot.data);
+             }else{
+               return Center(child: CircularProgressIndicator());
+             } 
+           },
+         ), 
+      ],),
+    );
+  } 
   Widget _crearStaff(BuildContext context) {
     return Container(
       width: double.infinity,

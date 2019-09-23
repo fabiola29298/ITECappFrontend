@@ -88,6 +88,7 @@ class ControlList extends StatelessWidget {
                      // print('ID activity: ${activity.id}');
                      // print('ID person  : ${_prefs.idpref}');
                      // _register(context, activity.id);
+                     Navigator.pushNamed(context, 'listaAsistenciaAdmin' ,arguments: control ); 
                 },dense: true,
 
               ),

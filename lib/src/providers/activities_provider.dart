@@ -31,9 +31,18 @@ class ActivityProvider{
   // Crear - POST
 
 
-    Future<Map<String, dynamic>> nuevoActividad(String name,String description,String type,String date,String starttime,String classroom ) async {
+    Future<Map<String, dynamic>> nuevoActividad(String name,String description,String type,String date,String starttime,String classroom, String person ) async {
 
-    Map<String, dynamic>  authData = {'name': name,'description' : description,'type':type,'date':date, 'start_time': starttime, 'classroom': classroom,'end_time': starttime,'block_campus': classroom };
+    Map<String, dynamic>  authData;
+    if(person==null){
+      authData = {'name': name,'description' : description,'type':type,'date':date, 'start_time': starttime, 'classroom': classroom,'end_time': starttime,'block_campus': classroom };
+    
+    }
+    else{
+      authData = {'name': name,'description' : description,'type':type,'date':date, 'start_time': starttime, 'classroom': classroom,'end_time': starttime,'block_campus': classroom,'person':person };
+    
+    }
+    
     final url = Uri.https(_url, 'activity',{
       'token' : _prefs.token
     } );
@@ -44,9 +53,9 @@ class ActivityProvider{
     print('decodedResp: $decodedResp');
     //print('ok: ${decodedResp['ok']}');  
 
-    if ( decodedResp.containsKey('person') ) {
+    if ( decodedResp.containsKey('activity') ) {
      // return login(email, password); 
-      return { 'ok': false, 'mensaje': ' ${decodedResp['err']}'  };
+      return { 'ok': true, 'mensaje': 'Guardado exitoso: ${decodedResp['activity']}'  };
     } else {  
       return { 'ok': false, 'mensaje': ' ${decodedResp['err']}'  };
     }

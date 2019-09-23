@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:itec_app/src/bloc/provider.dart';
+import 'package:itec_app/src/models/person_model.dart';
 import 'package:itec_app/src/providers/activities_provider.dart';
 import 'package:itec_app/src/providers/person_provider.dart';  
 import 'package:itec_app/src/utils/utils.dart'; 
@@ -13,7 +14,7 @@ class RegistroActivityPage extends StatefulWidget {
 class _RegistroActivityPageState extends State<RegistroActivityPage> {
   final formKey     = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  
+  String _idSpeaker , _nameSpeaker;
   final activityProvider = new ActivityProvider(); 
   final personProvider = new PersonProvider();
   @override
@@ -39,8 +40,9 @@ class _RegistroActivityPageState extends State<RegistroActivityPage> {
                     _crearFecha(actividadBloc),  
                     _crearHorario(actividadBloc), 
                     _crearAula(actividadBloc),
+                    Text('Para crear una nueva charla, agregar Expositor'),
                     _crearSpeaker(actividadBloc),
-                    Text('Para charla agregar Expositor'),
+                    
                     SizedBox(height: 20.0),
                     _crearBoton(actividadBloc),
                   ],
@@ -154,7 +156,7 @@ class _RegistroActivityPageState extends State<RegistroActivityPage> {
         onChanged: (String newValue) {
           setState(() {  bloc.changeStarttime(newValue); });
         },
-        items: <String>['08:30 - 09:00','09:00 - 10:00','10:00 - 11:00','11:00 - 12:00','12:00 - 12:30','12:30 - 13:30','13:30 - 15:30','15:30- 16:30','16:30 - 17:30','17:30 - 18:00','18:00 - 19:00','19:00 - 19:30','19:30 - 20:30','08:00 - 09:30', '09:00 - 9:30', '9:30 - 12:30','12:30 - 14:00','14:00 - 17:30', '17:30 - 18:00' ]
+        items: <String>['08:30 - 09:00','09:00 - 10:00','10:00 - 11:00','11:00 - 12:00','12:00 - 12:30','12:30 - 13:30','13:30 - 15:30','15:30- 16:30','16:30 - 17:30','17:30 - 18:00','18:00 - 19:00','19:00 - 19:30','19:30 - 20:30','08:00 - 09:30', '09:00 - 9:30', '9:30 - 12:30','12:30 - 14:00','14:00 - 17:30' ]
           .map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(value: value, child: Text(value), );
           }).toList(),
@@ -181,12 +183,55 @@ class _RegistroActivityPageState extends State<RegistroActivityPage> {
           }).toList(),
     ),);},);
   }
-   Widget _crearSpeaker(ActivityBloc actividadBloc){
-    return Container();
-
+   Widget _crearSpeaker(ActivityBloc bloc){
+     
+    return Container(
+      width: double.infinity,
+      child: Column( 
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+        Container(
+          padding: EdgeInsets.only(left:20.0),
+          child: 
+          FutureBuilder(
+           future: personProvider.getSpeakers(), 
+           builder: (BuildContext context, AsyncSnapshot<List> snapshot) { 
+             if(snapshot.hasData){
+               return _crearDropBoxStaff(snapshot.data, bloc);
+             }else{
+               return Center(child: CircularProgressIndicator());
+             } 
+           },
+         ), 
+        ),
+      ],
+    ));
 
   }
+ Widget _crearDropBoxStaff( List<Person> data,ActivityBloc bloc){
 
+    return   Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        child:  DropdownButton<String>(
+        
+        
+        hint: Text('Selecciona Speaker'),
+        icon: Icon(Icons.arrow_drop_down), iconSize: 30, isExpanded: true, elevation: 16,
+        underline: Container( height: 2, color: Colors.deepPurpleAccent, ),
+        
+        items: data.map((item) {
+          _nameSpeaker= '${item.name} ${item.lastName}';
+            return DropdownMenuItem<String>(
+              value: item.id, child: Text('${item.name} ${item.lastName}'), );
+          }).toList(),
+
+        onChanged: (String newValue) {
+          setState(() {  _idSpeaker= newValue;  bloc.changePerson(_idSpeaker); });
+        },
+
+        value: _idSpeaker,
+    ),);
+  }
   Widget _crearBoton(ActivityBloc bloc) {
     
     return StreamBuilder(
@@ -222,9 +267,9 @@ class _RegistroActivityPageState extends State<RegistroActivityPage> {
 
     void _submit(ActivityBloc bloc, BuildContext context) async {
       mostrarCargando( context,'Guardando Actividad'  );
-    print("respuesta: ${bloc.name} - ${bloc.description} - ${bloc.type} - ${bloc.date} - ${bloc.starttime} - ${bloc.classroom}  ");
+    print("respuesta: ${bloc.name} - ${bloc.description} - ${bloc.type} - ${bloc.date} - ${bloc.starttime} - ${bloc.classroom} - ${bloc.person} ");
       
-      Map info = await activityProvider.nuevoActividad(bloc.name, bloc.description, bloc.type, bloc.date, bloc.starttime, bloc.classroom );
+      Map info = await activityProvider.nuevoActividad(bloc.name, bloc.description, bloc.type, bloc.date, bloc.starttime, bloc.classroom, bloc.person );
 
       if ( info['ok'] ) {
         Navigator.of(context).pop();

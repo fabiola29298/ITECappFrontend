@@ -73,7 +73,7 @@ import 'package:itec_app/src/widgets/schedule_list.dart';
            future: scheduleProvider.getSchedules(), 
            builder: (BuildContext context, AsyncSnapshot<List> snapshot) { 
              if(snapshot.hasData){
-               print('hay algo ');
+               //print('hay algo ');
                return ScheduleList(schedule: snapshot.data);
              }else{
                return Center(child: CircularProgressIndicator());

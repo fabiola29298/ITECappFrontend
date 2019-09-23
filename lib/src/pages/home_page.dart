@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
 
             RaisedButton(
               shape: StadiumBorder(),
-              color: Color(0xFF1F396E),
+              color: Color(0xFF3C4E73),
               textColor: Colors.white,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
@@ -58,7 +58,7 @@ class HomePage extends StatelessWidget {
             RaisedButton(
               
               shape: StadiumBorder(),
-              color: Color(0xFF1F396E),
+              color: Color(0xFF3C4E73),
               textColor: Colors.white,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
@@ -73,7 +73,7 @@ class HomePage extends StatelessWidget {
 
             RaisedButton(
               shape: StadiumBorder(),
-              color: Color(0xFF1F396E),
+              color: Color(0xFF3C4E73),
               textColor: Colors.white,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
