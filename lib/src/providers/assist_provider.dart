@@ -98,13 +98,15 @@ Future <List<Assist>> buscarAssistbyPerson(String person) async{
 
    // Editar - PUT
 
-  Future<bool> editarFeedback( Assist item ) async {
+  Future<bool> editarFeedback( Assist item, String comentario ) async {
     
-    final url = Uri.https(_url, 'activity/${item.id}',{
-      'token' : _prefs.token
-    } );
-
-    final resp = await http.post( url, body: assistToJson(item) );
+    final url = Uri.https(_url, '/assist/feedback/${item.id}',{
+      'token' : _prefs.token,
+      'feedback': comentario
+    } ); 
+    Map<String, dynamic>  authData = {'feedback': comentario};
+    
+    final resp = await http.put( url, body:  authData );
     final decodedData = json.decode(resp.body);
     print( 'editarFeedback: $decodedData');
     return true;

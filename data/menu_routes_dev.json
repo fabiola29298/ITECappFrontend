@@ -4,35 +4,7 @@
             "ruta": "menuPage",
             "icon": "home",
             "texto": "Inicio"
-        }, {
-            "ruta": "registroActivityAdmin",
-            "icon": "avatar",
-            "texto": "Crear nueva actividad"
         },
-
-        {
-            "ruta": "registroControlAdmin",
-            "icon": "avatar",
-            "texto": "Crear nueva lista de control"
-        },
-        {
-            "ruta": "registroNotificacionesAdmin",
-            "icon": "avatar",
-            "texto": "Crear nueva notificacion"
-        },
-
-        {
-            "ruta": "listaParticipantes",
-            "icon": "avatar",
-            "texto": "Lista de participantes"
-        },
-        {
-            "ruta": "listaControlAdmin",
-            "icon": "avatar",
-            "texto": "Lista de Control de asistencia"
-        },
-
-
         {
             "ruta": "programaUser",
             "icon": "calendar_today",
@@ -64,6 +36,31 @@
             "icon": "avatar",
             "texto": "Lista de Asistencia"
         },
+
+
+        {
+            "ruta": "registroActivityAdmin",
+            "icon": "avatar",
+            "texto": "Crear nueva actividad"
+        },
+        {
+            "ruta": "registroNotificacionesAdmin",
+            "icon": "avatar",
+            "texto": "Crear nueva notificacion"
+        },
+        {
+            "ruta": "registroControlAdmin",
+            "icon": "avatar",
+            "texto": "Listas de control de asistencia"
+        },
+        {
+            "ruta": "listaParticipantes",
+            "icon": "avatar",
+            "texto": "Lista de participantes"
+        },
+
+
+
 
         {
             "ruta": "scroll",

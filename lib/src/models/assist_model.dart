@@ -5,6 +5,7 @@
 //     final client = clientFromJson(jsonString);
 
 import 'dart:convert';
+ 
 
 Assist assistFromJson(String str) => Assist.fromJson(json.decode(str));
 
@@ -35,6 +36,11 @@ class Assist {
     Map<String, dynamic> person;
     String dateTime;
     int v;
+
+
+    set feedbackSet(String feedbackNew) {
+    feedback = feedbackNew;
+  }
 
     Assist({
         this.feedback,
@@ -76,4 +82,8 @@ class Assist {
         v            = json['v']; 
     
   }
+
+ 
+
+  
 }

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 
 import 'package:itec_app/src/pages/home_page.dart';
-import 'package:itec_app/src/pages/menu_principal_adm/lista_asistencia_page.dart';
-import 'package:itec_app/src/pages/menu_principal_adm/lista_control_asistencia_page.dart';
+import 'package:itec_app/src/pages/menu_principal_adm/lista_asistencia_page.dart'; 
 import 'package:itec_app/src/pages/menu_principal_adm/lista_participantes_page.dart';
 import 'package:itec_app/src/pages/menu_principal_adm/registro_activity_page.dart';
 import 'package:itec_app/src/pages/menu_principal_adm/registro_lista_control_asistencia_page.dart';
@@ -41,7 +40,7 @@ Map<String, WidgetBuilder> getAplicationRouter(){
          'listaParticipantes'             : (BuildContext context)=> ListaParticipantesPage(),
          
          'listaAsistenciaAdmin'           : (BuildContext context)=> ListaAsistenciaPage(),
-         'listaControlAdmin'              : (BuildContext context)=> ListaControlAsistenciaPage(),
+         'listaControlAdmin'              : (BuildContext context)=> RegistroListaControlAsistenciaPage(),
          
          'registroControlAdmin'           : (BuildContext context)=> RegistroListaControlAsistenciaPage(),
          'registroNotificacionesAdmin'    : (BuildContext context)=> RegistroNotificacionesPage()
