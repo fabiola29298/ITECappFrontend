@@ -29,6 +29,7 @@ dependencies:
   flutter_swiper : ^1.1.6
   http: ^0.12.0+2
   rxdart: ^0.22.2
+  intl: ^0.16.0
   image_picker:
   mime_type:
   shared_preferences:

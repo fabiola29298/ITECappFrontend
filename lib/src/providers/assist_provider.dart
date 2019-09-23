@@ -77,9 +77,9 @@ Future <List<Assist>> buscarAssistbyPerson(String person) async{
     print('decode:{$decodedData}');
     return assistData.items;
   } 
-  Future<Map<String, dynamic>> nuevoAssist(String assistcontrol, String person, String date_time  ) async {
+  Future<Map<String, dynamic>> nuevoAssist(String assistcontrol, String person, String dateTime  ) async {
 
-    Map<String, dynamic>  authData = {'assistcontrol': assistcontrol,'person' : person,'date_time':date_time };
+    Map<String, dynamic>  authData = {'assistcontrol': assistcontrol,'person' : person,'date_time':dateTime };
     final url = '$_url2/assist';
     final resp = await http.post(url,body:  authData); 
 
@@ -89,7 +89,7 @@ Future <List<Assist>> buscarAssistbyPerson(String person) async{
     //print('ok: ${decodedResp['ok']}'); 
     //print('person: ${decodedResp['assist']}'); 
 
-    if ( decodedResp.containsKey('person') ) {
+    if ( decodedResp.containsKey('assist') ) {
       return { 'ok': true, 'assist': ' ${decodedResp['assist']}'  }; 
     } else {  
       return { 'ok': false, 'mensaje': ' ${decodedResp['err']}'  };
@@ -113,7 +113,7 @@ Future <List<Assist>> buscarAssistbyPerson(String person) async{
 
 Future<int> borrarAssist( String id ) async { 
 
-    final url  = '$_url/assist/$id';
+    final url  = '$_url2/assist/$id';
     final resp = await http.delete(url);
 
     print( resp.body );

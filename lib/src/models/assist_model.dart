@@ -31,9 +31,9 @@ class Assist {
     String feedback;
     bool status;
     String id;
-    String assistcontrol;
-    String person;
-    DateTime dateTime;
+    Map<String, dynamic> assistcontrol;
+    Map<String, dynamic> person;
+    String dateTime;
     int v;
 
     Assist({
@@ -52,7 +52,7 @@ class Assist {
         id: json["_id"],
         assistcontrol: json["assistcontrol"],
         person: json["person"],
-        dateTime: DateTime.parse(json["date_time"]),
+        dateTime: json["date_time"],
         v: json["__v"],
     );
 
@@ -62,7 +62,7 @@ class Assist {
         "_id": id,
         "assistcontrol": assistcontrol,
         "person": person,
-        "date_time": dateTime.toIso8601String(),
+        "date_time": dateTime,
         "__v": v,
     };
 

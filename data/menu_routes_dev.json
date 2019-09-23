@@ -27,11 +27,6 @@
             "texto": "Lista de participantes"
         },
         {
-            "ruta": "listaAsistenciaAdmin",
-            "icon": "avatar",
-            "texto": "Lista de Asistentes por actividad"
-        },
-        {
             "ruta": "listaControlAdmin",
             "icon": "avatar",
             "texto": "Lista de Control de asistencia"

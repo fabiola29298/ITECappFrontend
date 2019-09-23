@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart'; 
  
 import 'package:itec_app/src/models/activity_model.dart';
-import 'package:itec_app/src/models/person_model.dart';
-import 'package:itec_app/src/pages/menu_principal_adm/lista_control_asistencia_page.dart';
+import 'package:itec_app/src/models/person_model.dart'; 
 import 'package:itec_app/src/providers/activities_provider.dart';
 import 'package:itec_app/src/providers/control_provider.dart';
 import 'package:itec_app/src/providers/person_provider.dart';  
