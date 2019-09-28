@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "370497577270",
+    "firebase_url": "https://pruebadevfest.firebaseio.com",
+    "project_id": "pruebadevfest",
+    "storage_bucket": "pruebadevfest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370497577270:android:92c84d151e5812749fd397",
+        "android_client_info": {
+          "package_name": "com.imt.itec_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370497577270-7r5bv373246qh7lf250p7losq26hoh22.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.imt.itec_app",
+            "certificate_hash": "dff71e50e35a3cede5a601eccdab18102e6410a6"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1KNLYjXpKE6wJVSFguw3gbNHRlNhL-4M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "370497577270-di7o57a6pkj5g6f0at0quv70oliju0ts.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

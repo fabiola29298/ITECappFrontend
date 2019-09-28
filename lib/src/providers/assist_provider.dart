@@ -67,12 +67,15 @@ Future <List<Assist>> buscarAssistbyPerson(String person) async{
     } );
  
     final resp = await http.get(url);
-    final decodedData = json.decode(resp.body);
-
+    var encodeFirst = json.encode(resp.body);
+    final decodedData = json.decode( encodeFirst);
+    
     if ( decodedData == null ) return [];
-    if ( decodedData['error'] != null ) return []; //EXTRA CUANDO EL TOKEN SE VENCE
-
-    final assistData = new Assists.fromJsonList(decodedData['assist']);
+    //if ( decodedData['err'] != null ) return []; //EXTRA CUANDO EL TOKEN SE VENCE
+    if ( decodedData.contains('<!DOCTYPE html') ) return [];
+    //Si no manda <!DOCTYPE html entonces mostrar lista
+    final decodedData2 = json.decode( resp.body);
+    final assistData = new Assists.fromJsonList(decodedData2['assist']);
     //final dt = assistData.items;
     print('decode:{$decodedData}');
     return assistData.items;

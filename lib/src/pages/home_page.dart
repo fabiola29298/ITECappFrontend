@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart'; 
-import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart'; 
-class HomePage extends StatelessWidget {
+import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:itec_app/src/providers/push_notifications_provider.dart'; 
+class HomePage extends StatefulWidget {
   static final String routeName = 'home';
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final prefs = new PreferenciasUsuario();
+  
   @override
  
   Widget build(BuildContext context) {
@@ -19,8 +27,6 @@ class HomePage extends StatelessWidget {
     
   }
 
-
-
    Widget _pagina1(){
     return Stack(
       children: <Widget>[
@@ -30,6 +36,7 @@ class HomePage extends StatelessWidget {
       ],
     );
   }
+
   Widget _pagina2(BuildContext context){
     return Container(
       width:  double.infinity,
@@ -80,7 +87,7 @@ class HomePage extends StatelessWidget {
                 child: Text('   Invitado    ', style: TextStyle(fontSize: 20.0),),
               ),
               onPressed: (){ 
-                Navigator.pushReplacementNamed(context, 'menuPage' );
+                Navigator.pushReplacementNamed(context, 'menuPage',arguments:false );
               },
             ),
              
@@ -90,6 +97,7 @@ class HomePage extends StatelessWidget {
       
     );
   } 
+
   Widget _colorFondo(){
     return Container(
       width:  double.infinity,
@@ -97,6 +105,7 @@ class HomePage extends StatelessWidget {
       color: Color.fromRGBO(24, 64, 87, 1.0)
     );
   }
+
   Widget _imagenFondo(){
     return Container(
       width:  double.infinity,
@@ -106,6 +115,7 @@ class HomePage extends StatelessWidget {
 
     );
   }
+
   Widget _textos(){
     //final estilo = TextStyle(color: Colors.white, fontSize: 56.0);
     return SafeArea(

@@ -22,18 +22,8 @@
         },
         {
             "ruta": "notificacionesUser",
-            "icon": "announcement",
-            "texto": "Auspiciadores"
-        },
-        {
-            "ruta": "notificacionesUser",
             "icon": "gps",
             "texto": "Mapa del Campus"
-        },
-        {
-            "ruta": "notificacionesUser",
-            "icon": "announcement",
-            "texto": "Notificaciones"
         },
 
         {

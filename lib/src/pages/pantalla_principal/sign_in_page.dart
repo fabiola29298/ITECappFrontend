@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:itec_app/src/bloc/provider.dart';
 import 'package:itec_app/src/providers/person_provider.dart';
 import 'package:itec_app/src/utils/utils.dart'; 
+import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
 
 class SignInPage extends StatefulWidget {
    
@@ -12,7 +13,7 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   final personProvider = new PersonProvider(); 
-   
+   final _prefs = new PreferenciasUsuario();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -360,7 +361,7 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-   _register(SigninBloc bloc, BuildContext context) async {
+   _register(SigninBloc bloc, BuildContext context) async { 
      String career ='', type='', gender ='';
             if (bloc.career !=null ){
               career=bloc.career;
@@ -375,7 +376,10 @@ class _SignInPageState extends State<SignInPage> {
     mostrarCargando( context,'Guardando su registro'  );
     if ( info['ok'] ) {
       Navigator.of(context).pop();
-       Navigator.pushReplacementNamed(context, 'menuPage');
+      Center(child: CircularProgressIndicator());
+       
+      Navigator.pushReplacementNamed(context, 'menuPage', arguments: false);
+       
     } else {
       Navigator.of(context).pop();
       mostrarAlerta( context, info['mensaje'] );

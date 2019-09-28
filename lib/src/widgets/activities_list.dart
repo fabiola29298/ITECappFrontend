@@ -15,9 +15,13 @@ class ActivitiesList extends StatelessWidget {
 final _prefs = new PreferenciasUsuario();
   @override
   Widget build(BuildContext context) {
-    //dimenciones del dispositivo
-    //final _screenSize = MediaQuery.of(context).size;
-
+    if(activities==[]){
+      return Column(
+        children: <Widget>[
+          Container(child: Text('Vacio')),
+        ],
+      );
+    }
     return  Column(
            
            children: _activitiesCard(context),
@@ -79,11 +83,7 @@ final _prefs = new PreferenciasUsuario();
                     Text(
                       'Tipo: ${activity.type}',
                       style: new TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, )
-                    ),
-                    Text(
-                      'Expositor: Pesona Prueba',
-                      style: new TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, )
-                    ),
+                    ), 
                     Text(
                       'Lugar: Aula ${activity.classroom} ',
                       style: new TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, )

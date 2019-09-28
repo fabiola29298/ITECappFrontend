@@ -88,7 +88,22 @@ Future <List<Person>> getPersonbyID(String id) async{
     return personData.items;
   }
 
+Future <List<Person>> getPersonbyname(String id) async{
+    final url = Uri.https(_url, 'person/buscar/nombre/$id',{
+      'token' : _prefs.token
+    } );
+ 
+    final resp = await http.get(url);
+    final decodedData = json.decode(resp.body);
 
+    if ( decodedData == null ) return [];
+    if ( decodedData['error'] != null ) return []; //EXTRA CUANDO EL TOKEN SE VENCE
+
+    final personData = new People.fromJsonList(decodedData['person']);
+    //final dt = personData.items;
+    print('decode:{$decodedData}');
+    return personData.items;
+  } 
 Future <List<Person>> getParticipants() async{
     final url = Uri.https(_url, 'person',{
       'token' : _prefs.token

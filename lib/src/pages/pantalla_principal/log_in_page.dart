@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:itec_app/src/bloc/provider.dart';
 import 'package:itec_app/src/providers/person_provider.dart';
-//import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:itec_app/src/utils/utils.dart';
 
 class LoginPage extends StatelessWidget {
-//final _prefs = new PreferenciasUsuario();
+final _prefs = new PreferenciasUsuario();
   final personProvider = new PersonProvider();
   @override
   Widget build(BuildContext context) {
@@ -162,13 +162,19 @@ class LoginPage extends StatelessWidget {
   }
 
    _login(LoginBloc bloc, BuildContext context) async {
-      
+    bool typeUserAdmin=false ;
     Map info = await personProvider.login(bloc.email, bloc.password );
      mostrarCargando( context,'Ingresando'  );
     if ( info['ok'] ) {
       Navigator.of(context).pop();
       Center(child: CircularProgressIndicator());
-      Navigator.pushReplacementNamed(context, 'menuPage');
+      if (_prefs.typeUSer=='ADMIN_ROLE'){
+        typeUserAdmin= true;
+        print('Es admi: $typeUserAdmin');
+          mostrarBienvenido(context);
+        
+      }
+      Navigator.pushReplacementNamed(context, 'menuPage', arguments: typeUserAdmin);
        
       
     } else {

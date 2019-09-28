@@ -53,8 +53,13 @@ class ScheduleProvider {
 
 Future<int> borrarProducto( String id ) async { 
 
-    final url  = '$_url2/schedule/$id';
-    final resp = await http.delete(url);
+     
+    final url = Uri.https(_url, '/schedule/$id',{
+      'token' : _prefs.token,
+      'id': id
+    } ); 
+     
+    final resp = await http.delete(url  );
 
     print( resp.body );
 

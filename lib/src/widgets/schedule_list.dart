@@ -45,7 +45,7 @@ class ScheduleList extends StatelessWidget {
                 color: Colors.red,
               ),
               onDismissed: ( direccion ){
-                scheduleProvider.borrarProducto(schedule.id);
+                scheduleProvider.borrarProducto(schedule.id.toString());
               },
               
               child: Column(

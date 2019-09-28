@@ -8,20 +8,14 @@ import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
 class MenuPage extends StatelessWidget {
   static final String routeName = 'MenuPage';
   final prefs = new PreferenciasUsuario();
+  
   @override 
   Widget build(BuildContext context) {
-    prefs.ultimaPagina = MenuPage.routeName;
     
-    if (prefs.typeUSer.toString()=="ADMIN_ROLE"){
-        return Scaffold(
-       appBar: AppBar(
-         title:Text('ITEC App'),
-       ),
-       body: _lista(),
-     );
-      }
-       
-      else {
+    bool prodData = ModalRoute.of(context).settings.arguments;
+   print('Es admi tambien: $prodData');
+    
+      if (prodData==false) {
         return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -39,6 +33,16 @@ class MenuPage extends StatelessWidget {
       
     );
       }
+      if (prodData){
+      //mostrarBienvenido(context);
+        return Scaffold(
+       appBar: AppBar(
+         title:Text('ITEC App'),
+       ),
+       body: _lista(),
+     );
+      }
+       
 
      
   }
@@ -118,9 +122,11 @@ class MenuPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                SizedBox(height: 15.0,),
                 Text('ITEC 2019', style: TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold)),
                 SizedBox(height: 10.0,),
-                Text('Innovation Technology Engineering Congress UCB', style: TextStyle(color: Colors.white, fontSize: 12.0 ))
+                Text('Innovation Technology Engineering Congress UCB', style: TextStyle(color: Colors.white, fontSize: 12.0 )),
+                SizedBox(height: 10.0,),
               ],
             ),
       ),
@@ -139,18 +145,20 @@ class MenuPage extends StatelessWidget {
           ],
           
          ),
+         
          TableRow(
           children:[
            _crearBotonRedondeado(context, Icons.people, 'Expositores','notificacionesUser'), 
-            _crearBotonRedondeado(context, Icons.announcement, 'Auspiciadores','notificacionesUser'), 
+          _crearBotonRedondeado(context, Icons.border_all, 'Mapa del Campus','notificacionesUser'), 
           ]
          ),
-         TableRow(
-          children:[
-            _crearBotonRedondeado(context, Icons.border_all, 'Mapa del Campus','notificacionesUser'), 
-            _crearBotonRedondeado(context, Icons.dashboard, 'Notificaciones','notificacionesUser'), 
-          ]
-         ),
+        // TableRow(
+        //  children:[
+            
+             // _crearBotonRedondeado(context, Icons.announcement, 'Auspiciadores','notificacionesUser'), 
+        //    _crearBotonRedondeado(context, Icons.dashboard, 'Notificaciones','notificacionesUser'), 
+        //  ]
+       //  ),
          TableRow(
           children:[
             _crearBotonRedondeado(context, Icons.border_all, 'Asistencia','asistenciaUser'),  

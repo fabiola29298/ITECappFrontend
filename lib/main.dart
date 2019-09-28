@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:itec_app/src/bloc/provider.dart'; 
-import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart'; 
 import 'package:itec_app/src/routes/routes.dart';
 
 void main() async {
@@ -11,8 +11,14 @@ void main() async {
 } 
  
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
     final prefs = new PreferenciasUsuario();
+ 
 
     @override 
   Widget build(BuildContext context) {
@@ -43,11 +49,7 @@ class MyApp extends StatelessWidget {
              
           ),
 
-          textTheme: TextTheme(
-            headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-            title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-            body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
-          ),
+           
             //para el boton probar el color en disable
       ),
       ),

@@ -5,6 +5,8 @@ import 'package:itec_app/src/models/assist_model.dart';
 import 'package:itec_app/src/models/person_model.dart';
 import 'package:itec_app/src/providers/assist_provider.dart';
 import 'package:itec_app/src/providers/person_provider.dart';
+import 'package:itec_app/src/search/search_activity_nombre.dart';
+import 'package:itec_app/src/search/search_person.dart';
 import 'package:itec_app/src/utils/utils.dart';
 import 'package:itec_app/src/widgets/menu_widget.dart';
 import 'package:intl/intl.dart';
@@ -16,7 +18,7 @@ class ListaAsistenciaPage extends StatefulWidget {
 class _ListaAsistenciaPageState extends State<ListaAsistenciaPage> {
   final personProvider = new PersonProvider();
   final assistProvider = new AssistProvider();
-  
+  String nombreData='prueba';
   DateTime now; 
   String formattedDate;  
    String _idParticipante , _nameParticipante, _idAssistControl;
@@ -28,7 +30,7 @@ class _ListaAsistenciaPageState extends State<ListaAsistenciaPage> {
     now = DateTime.now();
     formattedDate = DateFormat('yyyy-MM-dd kk:mm:ss').format(now);
     _idAssistControl=prodData.id;
-
+    print('lisa: $prodData');
       return Scaffold(
         appBar:AppBar(
           title: Text('Lista de asistencia'),
@@ -47,7 +49,7 @@ class _ListaAsistenciaPageState extends State<ListaAsistenciaPage> {
                 Divider(),
                 SizedBox(height: 10.0,),
                 Text('Ingresa nuevos participantes'),
-                
+                _buscarParticipante(context),
                 _crearParticipante(context),
                 _crearBoton(context), 
                 Divider(),
@@ -115,6 +117,33 @@ class _ListaAsistenciaPageState extends State<ListaAsistenciaPage> {
       ],
     );
   }
+  
+  
+  Widget _buscarParticipante(BuildContext context){
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Divider(),
+        Text('Buscar: '),
+        Container(
+          child: IconButton(
+                
+                icon: Icon(Icons.search),
+               onPressed: () {
+                  showSearch(
+                  
+                    context: context, 
+                    delegate: PersonSearch( ),
+                    // query: 'Hola'
+                    );
+                },
+              ),),
+      ],
+    );
+  }
+  
   Widget _crearParticipante(BuildContext context) {
     return Container(
       width: double.infinity,
@@ -185,6 +214,7 @@ class _ListaAsistenciaPageState extends State<ListaAsistenciaPage> {
               return;
             } 
             _submit( context);
+            
           }   
         );
        
@@ -196,7 +226,7 @@ class _ListaAsistenciaPageState extends State<ListaAsistenciaPage> {
 
       if ( info['ok'] ) {
         Navigator.of(context).pop();
-        onState(){}
+        onState(){} 
       } else {
         Navigator.of(context).pop();
         mostrarAlerta( context, info['mensaje'] );
@@ -204,7 +234,20 @@ class _ListaAsistenciaPageState extends State<ListaAsistenciaPage> {
       
       
   }
+void  submitSearch(String id) async {
+     mostrarCargando(context, 'Guardando nuevo asistente');        
+      Map info = await assistProvider.nuevoAssist(_idAssistControl,id,formattedDate);
 
+      if ( info['ok'] ) {
+        Navigator.of(context).pop();
+        onState(){} 
+      } else {
+        Navigator.of(context).pop();
+        mostrarAlerta( context, info['mensaje'] );
+      }
+      
+      
+  }
   Widget _obtenerActivitiesCard(BuildContext context){
     return Container(
       width: double.infinity,
@@ -266,7 +309,7 @@ class _ListaAsistenciaPageState extends State<ListaAsistenciaPage> {
               children: <Widget>[ 
                   ListTile(               
                   title: Text(
-                    person.name,
+                    '${person.name} ${person.lastName}',
                     style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15.0),
                   ),
                   subtitle: new Column(

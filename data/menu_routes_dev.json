@@ -15,21 +15,13 @@
             "icon": "schedule",
             "texto": "Mi Itinerario Personalizado"
         },
-        {
-            "ruta": "notificacionesUser",
-            "icon": "announcement",
-            "texto": "Auspiciadores"
-        },
+
         {
             "ruta": "notificacionesUser",
             "icon": "gps",
             "texto": "Mapa del Campus"
         },
-        {
-            "ruta": "notificacionesUser",
-            "icon": "announcement",
-            "texto": "Notificaciones"
-        },
+
 
         {
             "ruta": "asistenciaUser",
@@ -42,11 +34,6 @@
             "ruta": "registroActivityAdmin",
             "icon": "avatar",
             "texto": "Crear nueva actividad"
-        },
-        {
-            "ruta": "registroNotificacionesAdmin",
-            "icon": "avatar",
-            "texto": "Crear nueva notificacion"
         },
         {
             "ruta": "registroControlAdmin",

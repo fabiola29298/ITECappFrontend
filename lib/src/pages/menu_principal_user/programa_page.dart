@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
 
  
 import 'package:itec_app/src/providers/activities_provider.dart';
+import 'package:itec_app/src/search/search_activity_nombre.dart';
 import 'package:itec_app/src/widgets/activities_list.dart';
 import 'package:itec_app/src/widgets/menu_widget.dart'; 
 class ProgramaPage extends StatelessWidget {
@@ -9,13 +10,21 @@ class ProgramaPage extends StatelessWidget {
   final activitiesProvider = new ActivityProvider();
   @override
   Widget build(BuildContext context) {
+ 
     return Scaffold(
       appBar:AppBar(
         title: Text('Programa ITEC'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: (){},
+           onPressed: () {
+              showSearch(
+              
+                context: context, 
+                delegate: ActivitySearch(),
+                // query: 'Hola'
+                );
+            },
           )
         ],
       ),

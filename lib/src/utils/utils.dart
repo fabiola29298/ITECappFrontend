@@ -5,7 +5,7 @@ void cerrarSesion(){
   final _prefs = new PreferenciasUsuario();
   _prefs.idpref = '';
   _prefs.token ='';
-  _prefs.typeUSer = ''; 
+  _prefs.typeUSer = 'USER_ROLE'; 
   _prefs.ultimaPagina='';
 
 }
@@ -63,6 +63,7 @@ void mostrarCargando(BuildContext context, String mensaje ) {
 
   showDialog(
     context: context,
+    
     builder: ( context ) {
       return AlertDialog(
         //title: Text('Cargando'),
@@ -75,6 +76,7 @@ void mostrarCargando(BuildContext context, String mensaje ) {
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: new Text("Cargando.. \n$mensaje"),
+                    
                   ),
           ],
         )
@@ -85,4 +87,29 @@ void mostrarCargando(BuildContext context, String mensaje ) {
  
 
 }
+void mostrarBienvenido(BuildContext context ) {
 
+  showDialog(
+    context: context,
+    builder: ( context ) {
+      return AlertDialog(
+        //title: Text('Cargando'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new CircularProgressIndicator(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: new Text("Bienvenido STAFF   "),
+                  ),
+          ],
+        )
+         
+      );
+    }
+  );
+ 
+
+}

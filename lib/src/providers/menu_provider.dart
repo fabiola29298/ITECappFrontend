@@ -15,7 +15,7 @@ class _MenuProvider {
   final _prefs = new PreferenciasUsuario(); 
   String user='';
     
-    if(_prefs.typeUSer=='ADMIN_ROLE')
+    if(_prefs.typeUSer!='ADMIN_USER')
       { user='data/menu_routes_dev.json'; }
     else{ user='data/menu_routes.json';  }
     
