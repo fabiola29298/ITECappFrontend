@@ -27,7 +27,7 @@ class PreferenciasUsuario {
   // GET y SET de token
  
   get token {
-    return _prefs.getString('token') ?? '';
+    return _prefs.getString('token') ?? 'vacio';
   }
 
   set token( String value ) {
@@ -37,25 +37,25 @@ class PreferenciasUsuario {
   // GET y SET de token
  
   get typeUSer {
-    return _prefs.getString('typeUSer') ?? '';
+    return _prefs.getString('typeUSer') ?? 'USER_ROLE'; //ADMIN_ROLE
   }
 
   set typeUSer( String value ) {
-    _prefs.setString('typeUSer', value);
+    _prefs.setString('typeUSer', value)  ;
   }
 
   // GET y SET de la última página
   get ultimaPagina {
-    return _prefs.getString('ultimaPagina') ?? 'menuPage';
+    return _prefs.getString('ultimaPagina') ?? '/';
   }
 
   set ultimaPagina( String value ) {
-    _prefs.setString('ultimaPagina', value);
+    _prefs.setString('ultimaPagina', value  );
   }
 
   // GET y SET de la ID
   get idpref {
-    return _prefs.getString('idpref') ?? '';
+    return _prefs.getString('idpref') ?? 'aaa';
   }
 
   set idpref( String value ) {

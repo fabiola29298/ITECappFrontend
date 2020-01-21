@@ -8,14 +8,14 @@ import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
 class MenuPage extends StatelessWidget {
   static final String routeName = 'MenuPage';
   final prefs = new PreferenciasUsuario();
-  
+  bool prodData = true;
   @override 
   Widget build(BuildContext context) {
     
-    bool prodData = ModalRoute.of(context).settings.arguments;
-   print('Es admi tambien: $prodData');
+  //prodData = ModalRoute.of(context).settings.arguments;
+  // print('Es admi tambien: $prodData');
     
-      if (prodData==false) {
+   //   if (prodData==false) {
         return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -32,8 +32,8 @@ class MenuPage extends StatelessWidget {
       ),
       
     );
-      }
-      if (prodData){
+ //     }
+   /*   if (prodData){
       //mostrarBienvenido(context);
         return Scaffold(
        appBar: AppBar(
@@ -42,7 +42,7 @@ class MenuPage extends StatelessWidget {
        body: _lista(),
      );
       }
-       
+     */  
 
      
   }

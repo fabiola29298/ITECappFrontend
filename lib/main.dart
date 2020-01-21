@@ -5,6 +5,8 @@ import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:itec_app/src/routes/routes.dart';
 
 void main() async {
+   WidgetsFlutterBinding.ensureInitialized();   
+   
   final prefs = new PreferenciasUsuario();
   await  prefs.initPrefs();
   runApp(MyApp());
