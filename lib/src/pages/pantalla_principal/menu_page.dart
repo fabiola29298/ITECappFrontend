@@ -7,11 +7,12 @@ import 'package:itec_app/src/utils/utils.dart';
 import 'package:itec_app/src/preferencias_usuario/preferencias_usuario.dart'; 
 class MenuPage extends StatelessWidget {
   static final String routeName = 'MenuPage';
-  final prefs = new PreferenciasUsuario();
+  final _prefs = new PreferenciasUsuario();
   bool prodData = true;
   @override 
   Widget build(BuildContext context) {
-    
+   
+  //El argumento que recibe de log_in_page line 177 es si es o no administror
   //prodData = ModalRoute.of(context).settings.arguments;
   // print('Es admi tambien: $prodData');
     
@@ -116,6 +117,8 @@ class MenuPage extends StatelessWidget {
   }
 
   Widget _titulos(){
+
+      print('prefs: ${_prefs.token} - ${_prefs.idpref} - ${_prefs.typeUSer}');
     return SafeArea(
           child: Container(
             padding: EdgeInsets.all(20.0),
@@ -126,6 +129,9 @@ class MenuPage extends StatelessWidget {
                 Text('ITEC 2019', style: TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold)),
                 SizedBox(height: 10.0,),
                 Text('Innovation Technology Engineering Congress UCB', style: TextStyle(color: Colors.white, fontSize: 12.0 )),
+                SizedBox(height: 10.0,),
+
+                Text('Bienvenido ${_prefs.idpref} - ${_prefs.typeUSer} ' , style: TextStyle(color: Colors.white, fontSize: 12.0 )),
                 SizedBox(height: 10.0,),
               ],
             ),
