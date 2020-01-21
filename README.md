@@ -1,6 +1,6 @@
-# itec_app
+# Itec App
 
-A new Flutter project.
+It is a mobile application to help students participating in the ITEC Congress of the Bolivian Catholic University. The application informs about the calendar, talks, congress activities, also collaborates in the attendance control for the organizers.
 
 ## Getting Started
 
